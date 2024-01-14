@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='langadaptprompt',
-    version='2.2',
+    version='2.21',
     author='Spyridon Mouselinos',
     author_email='mouselinos.spur.kw@gmail.com',
     packages=find_packages(exclude='test'),
@@ -18,8 +18,7 @@ setup(
         'scipy',
         'python-Levenshtein',
         'Levenshtein',
-
-
+        'scikit-learn'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
