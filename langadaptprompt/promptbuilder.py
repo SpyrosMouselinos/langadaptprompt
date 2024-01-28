@@ -11,8 +11,31 @@ from .paraphraser import PARAPHRASE_SYSTEM_PROMPT, PARAPHRASE_USER_PROMPT, PARAP
 from .selfprompter import SELFPROMPT_SYSTEM_PROMPT, SELFPROMPT_USER_PROMPT, SELFPROMPT_ASSISTANT_PROMPT, \
     SELFPROMPT_USER_PROMPT2, SELFPROMPT_ASSISTANT_PROMPT2
 from .constants import PACK_ORDERING
+import time
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
+
+
+def Gemini_TXT_Query(gemini_model, prompt, n=1):
+    results = []
+    for i in range(n):
+        while True:
+            try:
+                response = gemini_model.generate_content(
+                    prompt,
+                    generation_config={
+                        'temperature': 0.8,
+                    },
+                )
+                results.append(response.text)
+            except Exception as e:
+                print(e)
+                print("Waiting for vertex...")
+                time.sleep(5)
+
+    if len(results) != n:
+        print(f"You requested {n} responses but you got {len(results)}...")
+    return results
 
 
 def count_inversions(a, b):
@@ -118,22 +141,35 @@ def extract_and_filter(list_of_lists):
     return [item for item, count in most_common]
 
 
-def paraphrase(prompt, openai_key):
-    messages = [
-        {"role": "system", "content": f"{PARAPHRASE_SYSTEM_PROMPT}"},
-        {"role": "user", "content": f"{PARAPHRASE_USER_PROMPT}"},
-        {"role": "assistant", "content": f"{PARAPHRASE_ASSISTANT_PROMPT}"},
-        {"role": "user", "content": f"{prompt}"},
-    ]
-    result = openai.ChatCompletion.create(
-        api_key=openai_key,
-        model='gpt-4',
-        max_tokens=300,
-        stop=None,
-        messages=messages,
-        temperature=0.8,
-        n=5)
-    results = [choice['message']['content'] for choice in result['choices']]
+def paraphrase(prompt, openai_key, gemini_model):
+    if openai_key is not None:
+        messages = [
+            {"role": "system", "content": f"{PARAPHRASE_SYSTEM_PROMPT}"},
+            {"role": "user", "content": f"{PARAPHRASE_USER_PROMPT}"},
+            {"role": "assistant", "content": f"{PARAPHRASE_ASSISTANT_PROMPT}"},
+            {"role": "user", "content": f"{prompt}"},
+        ]
+        result = openai.ChatCompletion.create(
+            api_key=openai_key,
+            model='gpt-4',
+            max_tokens=300,
+            stop=None,
+            messages=messages,
+            temperature=0.8,
+            n=5)
+        results = [choice['message']['content'] for choice in result['choices']]
+    elif gemini_model is not None:
+        messages = [
+            PARAPHRASE_SYSTEM_PROMPT,
+            PARAPHRASE_USER_PROMPT,
+            PARAPHRASE_ASSISTANT_PROMPT,
+            prompt
+        ]
+
+        final_prompt = '\n\n'.join(messages)
+        results = Gemini_TXT_Query(gemini_model, final_prompt, n=5)
+    else:
+        raise ValueError
     return find_diverse_paraphrase(prompt, results)
 
 
@@ -230,14 +266,16 @@ def find_self_similar_questions(item, list_of_items, answers, openai_key):
 def few_shot_builder(current_question,
                      dataset_df='../test/filtered_euclidea.csv',
                      pack_limit=None,
-                     mode='ST',
+                     mode='Adapt',
                      self_reflect=True,
-                     openai_key=None):
+                     openai_key=None,
+                     gemini_model=None,
+                     ):
     questions, answers_nl, answers_pl, pack = pd_load_data(dataset_df)
     mixprompt = current_question + '\n\n' + '\n\n' + fcs(current_question, questions, answers_nl)
 
     if self_reflect:
-        paraphrased = paraphrase(mixprompt, openai_key=openai_key)
+        paraphrased = paraphrase(mixprompt, openai_key=openai_key, gemini_model=gemini_model)
     else:
         paraphrased = ''
     nextprompt = [current_question]
@@ -250,13 +288,13 @@ def few_shot_builder(current_question,
         pack_limit = PACK_ORDERING[pack_limit]
         questions, answers_nl, answers_pl, pack = pd_load_data(dataset_df, limit=pack_limit)
 
-    if mode == 'ST':
+    if mode == 'Adapt':
         few_shot = find_st_similar_questions(nextprompt, questions, answers_nl, top_n)
-    elif mode == 'Self':
-        few_shot = find_self_similar_questions(nextprompt, questions, answers_nl, openai_key)
+    # elif mode == 'Self':
+    # few_shot = find_self_similar_questions(nextprompt, questions, answers_nl, openai_key)
     elif mode == 'Zero-Shot':
         few_shot = ''
     else:
         raise ValueError(
-            'Mode must be one of the following: [ST,Self,Zero-Shot] if you want to have a static Few-Shot prompt, just add it to your question.')
+            'Mode must be one of the following: [Adapt,Zero-Shot] if you want to have a static Few-Shot prompt, just add it to your question.')
     return (paraphrased + '\n\n' + few_shot + '\n\n' + current_question).strip()
