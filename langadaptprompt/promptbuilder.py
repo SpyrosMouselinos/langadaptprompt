@@ -7,10 +7,12 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
 import openai
-from .paraphraser import PARAPHRASE_SYSTEM_PROMPT, PARAPHRASE_USER_PROMPT, PARAPHRASE_ASSISTANT_PROMPT
-from .selfprompter import SELFPROMPT_SYSTEM_PROMPT, SELFPROMPT_USER_PROMPT, SELFPROMPT_ASSISTANT_PROMPT, \
+#######
+from paraphraser import PARAPHRASE_SYSTEM_PROMPT, PARAPHRASE_USER_PROMPT, PARAPHRASE_ASSISTANT_PROMPT
+from selfprompter import SELFPROMPT_SYSTEM_PROMPT, SELFPROMPT_USER_PROMPT, SELFPROMPT_ASSISTANT_PROMPT, \
     SELFPROMPT_USER_PROMPT2, SELFPROMPT_ASSISTANT_PROMPT2
-from .constants import PACK_ORDERING
+from constants import PACK_ORDERING
+######
 import time
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -86,24 +88,24 @@ def extract_int_lists(text):
     return int_lists[0]
 
 
-def pd_load_data(df, limit=None):
+def pd_load_data(df, limit=None, question_kw='question', solution_kw='solution_nl', solution_tool_kw='solution_tool'):
     if isinstance(df, str):
         data = pd.read_csv(df)
     else:
         data = df
     if limit is None:
-        questions = data['question'].values
+        questions = data[question_kw].values
         # questions = [f.split('Tool List')[0] for f in questions]
-        answers_nl = data['solution_nl'].values
-        answers_pl = data['solution_tool'].values
+        answers_nl = data[solution_kw].values
+        answers_pl = data[solution_tool_kw].values
         pack = data['pack'].values
     else:
         alter_pack = data['pack'].apply(lambda x: PACK_ORDERING[x])
         data = data[alter_pack <= limit]
-        questions = data['question'].values
+        questions = data[question_kw].values
         # questions = [f.split('Tool List')[0] for f in questions]
-        answers_nl = data['solution_nl'].values
-        answers_pl = data['solution_tool'].values
+        answers_nl = data[solution_kw].values
+        answers_pl = data[solution_tool_kw].values
         pack = data['pack'].values
     return questions, answers_nl, answers_pl, pack
 
@@ -270,8 +272,15 @@ def few_shot_builder(current_question,
                      self_reflect=True,
                      openai_key=None,
                      gemini_model=None,
+                     question_kw='question',
+                     solution_kw='solution_nl',
+                     solution_tool_kw='solution_tool'
                      ):
-    questions, answers_nl, answers_pl, pack = pd_load_data(dataset_df)
+    questions, answers_nl, answers_pl, pack = pd_load_data(dataset_df,
+                                                           question_kw=question_kw,
+                                                           solution_kw=solution_kw,
+                                                           solution_tool_kw=solution_tool_kw
+                                                           )
     mixprompt = current_question + '\n\n' + '\n\n' + fcs(current_question, questions, answers_nl)
 
     if self_reflect:
@@ -286,7 +295,11 @@ def few_shot_builder(current_question,
     else:
         assert pack_limit in PACK_ORDERING.keys()
         pack_limit = PACK_ORDERING[pack_limit]
-        questions, answers_nl, answers_pl, pack = pd_load_data(dataset_df, limit=pack_limit)
+        questions, answers_nl, answers_pl, pack = pd_load_data(dataset_df,
+                                                               question_kw=question_kw,
+                                                               solution_kw=solution_kw,
+                                                               solution_tool_kw=solution_tool_kw,
+                                                               limit=pack_limit)
 
     if mode == 'Adapt':
         few_shot = find_st_similar_questions(nextprompt, questions, answers_nl, top_n)
