@@ -1,0 +1,1506 @@
+,pack,level_id,question,question_r,solution_r,solution_nl,solution_tool,solution_symbol,initial_symbol
+0,Alpha,https://euclidea.fandom.com/wiki/Equilateral_Triangle,"Description: Construct an equilateral triangle with the given side. The construction must be exact. Guessing even very close points does not count as a solution.Let A and B be the two end points of the given segment.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Intersect Tool']
+Solution: ","Description: Construct an equilateral triangle with the given side. The construction must be exact. Guessing even very close points does not count as a solution.Let A and B be the two end points of the given segment.
+Solution: ","Construct a circle with center A and radius AB
+Construct a circle with center B and radius AB, intersecting circle A at points C and D
+Construct line AC
+Construct line BC
+Rationale: A circle contains all points at an equal distance from the center. Since B and C both lie on the circle centered at A, AB=AC; likewise, since A and C both lie on the circle centered at B, AB=BC. As all three sides have the same length, the triangle ABC thus created is equilateral. The same is true for the second triangle ABD.
+","<Circle Tool>Construct a circle with center A and radius AB
+<Circle Tool>Construct a circle with center B and radius AB, intersecting circle A at points C and D
+<Line Tool>Construct line AC
+<Line Tool>Construct line BC","['Circle Tool', 'Circle Tool', 'Line Tool', 'Line Tool']","[['A', 'B'], ['AB'], ['C', 'D'], ['AC'], ['BC']]","['A', 'B']"
+1,Alpha,https://euclidea.fandom.com/wiki/Angle_of_60%C2%B0,"Description: Construct an angle of 60° with the given side.Let A be the initial point of the given ray.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Intersect Tool']
+Solution: ","Description: Construct an angle of 60° with the given side.Let A be the initial point of the given ray.
+Solution: ","Construct a circle with center A and an arbitrary radius, intersecting the ray at point B.
+Construct a circle with center B and radius AB, intersecting circle A at points C and D.
+Construct line AC.
+Rationale: All internal angles of an equilateral triangle are 60°, so you just need to construct the two sides of an equilateral triangle adjacent to vertex A.
+The two circles ensure that AB=AC=BC and AB=AD=BD and so ABC and ABD are equilateral and angles CAB and DAB are 60°.
+","<Circle Tool>Construct a circle with center A and an arbitrary radius, intersecting the ray at point B.
+<Circle Tool>Construct a circle with center B and radius AB, intersecting circle A at points C and D.
+<Line Tool>Construct line AC.","['Circle Tool', 'Circle Tool', 'Line Tool']","[['A'], ['B'], ['AB', 'C', 'D'], ['AC']]",['A']
+2,Alpha,https://euclidea.fandom.com/wiki/Intersect_Tool,"Description: If it is hard to hit the required intersection since lines are too close to each other, use the Intersect tool. Select one object (a circle or a line), then the second one. To practice, construct the intersection of the given circles.
+Tool List: ['Intersect Tool']
+Solution: ","Description: If it is hard to hit the required intersection since lines are too close to each other, use the Intersect tool. Select one object (a circle or a line), then the second one. To practice, construct the intersection of the given circles.
+Solution: ","
+Rationale: The intersection tool can be an easier way to highlight particular points than attempting to zoom in and manually select which point is desired.
+",,[],[[]],[]
+3,Alpha,https://euclidea.fandom.com/wiki/Perpendicular_Bisector,"Description: Construct the perpendicular bisector of the segment.Given the segment AB.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Intersect Tool']
+Solution: ","Description: Construct the perpendicular bisector of the segment.Given the segment AB.
+Solution: ","Construct a circle with center A and radius AB.
+Construct a circle with center B and radius AB, intersecting circle A at C and D.
+Construct line CD.
+Rationale: Any point of a perpendicular bisector is equidistant to both A and B. The two circles ensure that AC=BC and AD=BD and so both C and D are on the perpendicular bisector of segment AB.
+","<Circle Tool>Construct a circle with center A and radius AB.
+<Circle Tool>Construct a circle with center B and radius AB, intersecting circle A at C and D.
+<Line Tool>Construct line CD.","['Circle Tool', 'Circle Tool', 'Line Tool']","[['AB'], ['A'], ['B', 'C', 'D'], ['CD']]",['AB']
+4,Alpha,https://euclidea.fandom.com/wiki/Perpendicular_Bisector_Tool,"Description: You have discovered the Perpendicular Bisector tool. Click sequentially on two points to see how it works.
+Tool List: ['Perpendicular Bisector Tool']
+Solution: ","Description: You have discovered the Perpendicular Bisector tool. Click sequentially on two points to see how it works.
+Solution: ","
+Rationale: The bisector tool works even when the line between two points has not been drawn; however the dashed line shown by the bisector tool is just visual decoration, and cannot be used by the Point or Intersect tool for selecting the midpoint.  It is also possible to tap-and-hold on one point, then drag to see where the perpendicular bisector will land before releasing at the second point.
+In many levels, use of the perpendicular bisector tool can achieve a lower L score than constructing the perpendicular bisector by elementary tools; however, when minimizing the E score, there are often situations where replacing an application of the bisector tool by its three underlying elementary constructions can point out a common underlying circle that can be reused for two perpendicular bisectors.
+",,[],[[]],[]
+5,Alpha,https://euclidea.fandom.com/wiki/Midpoint,"Description: Construct the midpoint of the segment defined by two points.Let A and B be the two points.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct the midpoint of the segment defined by two points.Let A and B be the two points.
+Solution: ","Construct line AB.
+Construct the perpendicular bisector of AB, intersecting AB at point C.
+Rationale: The perpendicular bisector of a segment passes through its midpoint.
+","<Line Tool>Construct line AB.
+<Perpendicular Bisector Tool>Construct the perpendicular bisector of AB, intersecting AB at point C.","['Line Tool', 'Perpendicular Bisector Tool']","[['A', 'B'], ['AB'], ['C']]","['A', 'B']"
+6,Alpha,https://euclidea.fandom.com/wiki/Circle_in_Square,"Description: Inscribe a circle in the square.Given the square ABCD.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Inscribe a circle in the square.Given the square ABCD.
+Solution: ","Construct line AC.
+Construct the perpendicular bisector of AB, intersecting AB at point E and AC at point F.
+Construct a circle with center E and radius EF.
+Rationale: In a square, the center of the inscribed circle is the intersection of its diagonal and the intersection of the perpendicular bisector of its sides. Constructing one diagonal and one perpendicular bisector is enough to find the center of the circle. One perpendiculor bisector is needed to determine the radius as the inscribed circle passes through all the midpoints of the square's sides.
+","<Line Tool>Construct line AC.
+<Perpendicular Bisector Tool>Construct the perpendicular bisector of AB, intersecting AB at point E and AC at point F.
+<Circle Tool>Construct a circle with center E and radius EF.","['Line Tool', 'Perpendicular Bisector Tool', 'Circle Tool']","[['ABCD'], ['AC'], ['AB', 'E', 'F'], ['EF']]",['ABCD']
+7,Alpha,https://euclidea.fandom.com/wiki/Move_Tool,"Description: Pascal's theorem states that if a hexagon is inscribed in a circle, then three points of intersection of its opposite sides lie on a straight line. Use the Move tool to see how the theorem works: just drag the blue points.Let A, B, C, D, E, and F be the 6 points of a hexagon inscribed in a circle.
+Tool List: []
+Solution: ","Description: Pascal's theorem states that if a hexagon is inscribed in a circle, then three points of intersection of its opposite sides lie on a straight line. Use the Move tool to see how the theorem works: just drag the blue points.Let A, B, C, D, E, and F be the 6 points of a hexagon inscribed in a circle.
+Solution: ","
+Rationale: This level does not construct anything, but does demonstrate Pascal's theorem in use.  As long as opposite sides of the hexagon are not parallel (which cannot be achieved in Euclidea using just the Move tool), they have an intersection; moving a hexagon vertex shows that the dependent intersections H, I, and J remain collinear.
+When the move tool is active, one finger on an empty area scrolls, one finger on a point, line, or circle moves that item along with all other items whose construction depends on it, and double-tap-and-drag-up/down zooms.
+",,[],"[['A', 'B', 'C', 'D', 'E', 'F']]","['A', 'B', 'C', 'D', 'E', 'F']"
+8,Alpha,https://euclidea.fandom.com/wiki/Rhombus_in_Rectangle,"Description: Inscribe a rhombus in the rectangle so that they share a diagonal.Given the rectangle ABCD with AB>AD.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Inscribe a rhombus in the rectangle so that they share a diagonal.Given the rectangle ABCD with AB>AD.
+Solution: ","Construct the perpendicular bisector of AC, intersecting AB at point E and CD at point F.
+Construct line AF.
+Construct line CE.
+Rationale: In a rhombus, the diagonals are perpendicular bisectors to each other, so given one of the rectangle's diagonal (also one of the rhombus' diagonal), constructing its perpendicular bisector gives you the second diagonal. The intersections of that second diagonal with the rectangle give you the two remaining vertices of the rhombus.
+","<Perpendicular Bisector Tool>Construct the perpendicular bisector of AC, intersecting AB at point E and CD at point F.
+<Line Tool>Construct line AF.
+<Line Tool>Construct line CE.","['Perpendicular Bisector Tool', 'Line Tool', 'Line Tool']","[['ABCD', 'AB', 'AD'], ['AC', 'CD', 'E', 'F'], ['AF'], ['CE']]","['ABCD', 'AB', 'AD']"
+9,Alpha,https://euclidea.fandom.com/wiki/Circle_Center,"Description: Construct the center of the circle.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct the center of the circle.
+Solution: ","Construct the perpendicular bisector P1 of two arbitrary points on the circle.
+Construct the perpendicular bisector of two other arbitrary points on the circle, intersecting P1 at point A.
+Point at A.      
+Rationale: Given any two points on a circle, the perpendicular bisector of the segment made up of those two points passes through the center of the circle. Therefore, by constructing two perpendicular bisectors, you'll find the center.
+The 5E solution uses the same reasoning, except you need to construct the perpendicular bisector without using the Perpendicular Bisector tool. As a reminder, in order to build a perpendicular bisector, you just need to construct two circles of equal radius with their centers on the circle and construct the line that passes through the intersections of those two circles. The trick to save 1 Elementary operation is to use one of the existing circles to construct your second perpendicular bisector.
+","<Circle Tool>Construct the perpendicular bisector P1 of two arbitrary points on the circle.
+<Circle Tool>Construct the perpendicular bisector of two other arbitrary points on the circle, intersecting P1 at point A.
+<Point Tool>Point at A.      ","['Circle Tool', 'Circle Tool', 'Point Tool']","[[], [], ['A'], []]",[]
+10,Alpha,https://euclidea.fandom.com/wiki/Inscribed_Square,"Description: Inscribe a square in the circle. One vertex of the square is given.Let O be the center of the circle and A the vertex.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Inscribe a square in the circle. One vertex of the square is given.Let O be the center of the circle and A the vertex.
+Solution: ","Construct line OA, intersecting the circle at point B.
+Construct the perpendicular bisector of AB, intersecting the circle at points C and D.
+Construct line AC.
+Construct line BC.
+Construct line BD.
+Construct line AD.
+Rationale: Solution 6L is easy as the inscribed square's center is the same as the circle's center, so you can find the vertex opposite to A as its diametrical opposite. That diameter is also a diagonal of the square, so by constructing its perpendicular bisector and second diagonal of the square, you can find the two remaining vertices and just need to trace the whole square.
+","<Line Tool>Construct line OA, intersecting the circle at point B.
+<Perpendicular Bisector Tool>Construct the perpendicular bisector of AB, intersecting the circle at points C and D.
+<Line Tool>Construct line AC.
+<Line Tool>Construct line BC.
+<Line Tool>Construct line BD.
+<Line Tool>Construct line AD.","['Line Tool', 'Perpendicular Bisector Tool', 'Line Tool', 'Line Tool', 'Line Tool', 'Line Tool']","[['O', 'A'], ['B', 'OA'], ['AB', 'C', 'D'], ['AC'], ['BC'], ['BD'], ['AD']]","['O', 'A']"
+11,Beta,https://euclidea.fandom.com/wiki/Angle_Bisector,"Description: Construct the line that bisects the given angle.Let A be the vertex of the angle.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct the line that bisects the given angle.Let A be the vertex of the angle.
+Solution: ","Construct a circle with center A and an arbitrary radius, intersecting the sides of the angle at points B and C.
+Construct the perpendicular bisector of BC.
+Rationale: The three circles allow you to construct a rhombus ABDC, which means its diagonal AD should bisect angle A.
+","<Circle Tool>Construct a circle with center A and an arbitrary radius, intersecting the sides of the angle at points B and C.
+<Perpendicular Bisector Tool>Construct the perpendicular bisector of BC.","['Circle Tool', 'Perpendicular Bisector Tool']","[['A'], ['B', 'C'], ['BC']]",['A']
+12,Beta,https://euclidea.fandom.com/wiki/Angle_Bisector_Tool,"Description: You have discovered the Angle Bisector tool. Click on any point on a side, on the vertex, and on any point on the other side.Let A be the vertex of the angle between ray B and C.
+Tool List: ['Angle Bisector Tool']
+Solution: ","Description: You have discovered the Angle Bisector tool. Click on any point on a side, on the vertex, and on any point on the other side.Let A be the vertex of the angle between ray B and C.
+Solution: ","With the angle bisector tool active, select one of the two rays, then select the vertex, then select the other ray.
+Rationale: The angle bisector tool works with either three clicks (ray, vertex, ray); or with a click on a ray, then click-and-drag on the vertex and release on the final ray; or with a click-and-drag on the first ray with a release on the vertex, followed by a click on the final ray.  Before the final action, the tool gives a visualization of where the bisector will appear.  The angle bisector tool works even for a vertex of a 180° angle (that is, when both rays are collinear), although in such cases, it costs more elementary moves than using the Perpendicular tool.  When selecting a ray, the tool prefers lines, but can also select points; a dashed line is drawn when there is not already a ray from a selected point to the vertex, although that decoration is not usable by the Point or Intersection tool.
+","<Angle Bisector Tool>With the angle bisector tool active, select one of the two rays, then select the vertex, then select the other ray.",['Angle Bisector Tool'],"[['A', 'B', 'C'], []]","['A', 'B', 'C']"
+13,Beta,https://euclidea.fandom.com/wiki/Intersection_of_Angle_Bisectors,"Description: Construct the point where the angle bisectors of the triangle are intersected.Given the triangle ABC.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct the point where the angle bisectors of the triangle are intersected.Given the triangle ABC.
+Solution: ","Construct the angle bisector A1 of  angle BAC.
+Construct the angle bisector A2 of  angle ACB, intersecting A1 at D.
+Rationale: Solution 6E has you manually construct the two angle bisectors. The first two circles has you construct two isosceles triangles ABD and ABE. Considering ABD with its base BD and the circle B, you can construct another circle with center D and the same radius and both circles would intersect along the perpendicular bisector of BD, which coincides with the angle bisector of ∠BAD since ABD is isosceles. Use the same reasoning by considering ABE with is base AE and the circle A and you can construct the perpendicular bisector of AE, which again coincides with the angle bisector of ∠ABE.  Although the same point will be constructed for any two of the three angle bisectors of the triangle, the 6E solution only works when started from the shortest side, as otherwise you would also have to construct a line extension to the other side to locate the point forming the base of an isosceles triangle.
+","<Angle Bisector Tool>Construct the angle bisector A1 of  angle BAC.
+<Angle Bisector Tool>Construct the angle bisector A2 of  angle ACB, intersecting A1 at D.","['Angle Bisector Tool', 'Angle Bisector Tool']","[['ABC'], ['BAC'], ['ACB', 'D']]",['ABC']
+14,Beta,https://euclidea.fandom.com/wiki/Angle_of_30%C2%B0,"Description: Construct an angle of 30° with the given side.Let A be the initial point of the given ray.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct an angle of 30° with the given side.Let A be the initial point of the given ray.
+Solution: ","Construct a circle with an arbitrary center B and radius AB, intersecting the ray at point C. Although the image shown here places B on the ray, this construction works even when point B is not on the ray, so long as B is on the same half of the plane as the ray.
+Construct a circle with center C and radius BC, intersecting circle B at points D and E.
+Construct line AD.
+Rationale: You want the angle of 30° to be the inscribed angle of circle B that will subtend the same arc as a central angle of 60°, which you can get by constructing an equilateral triangle. By constructing circle C, you get BCD, an equilateral triangle, so the arc CD is the arc you want.
+","<Circle Tool>Construct a circle with an arbitrary center B and radius AB, intersecting the ray at point C. Although the image shown here places B on the ray, this construction works even when point B is not on the ray, so long as B is on the same half of the plane as the ray.
+<Circle Tool>Construct a circle with center C and radius BC, intersecting circle B at points D and E.
+<Line Tool>Construct line AD.","['Circle Tool', 'Circle Tool', 'Line Tool']","[['A'], ['B', 'AB', 'C'], ['E', 'BC', 'D'], ['AD']]",['A']
+15,Beta,https://euclidea.fandom.com/wiki/Double_Angle,"Description: Construct an angle equal to the given one so that they share one side.Let O be the vertex of the angle.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct an angle equal to the given one so that they share one side.Let O be the vertex of the angle.
+Solution: ","Construct a circle with an arbitrary center A on one ray and an arbitrary radius so that it intersects the other ray at least once. Let B be one of those intersections.
+Construct a circle with another arbitrary center C on the first ray and radius BC, intersecting circle A at D.
+Construct line OD.
+Rationale: The first circle allows you to pick any point on the other ray and the second circle allows you to create the reflection of that point through the first ray. Then by tracing the line OD, you're actually constructing the reflection of the second ray through the first ray, so it's angle to the first ray will be the same.
+","<Circle Tool>Construct a circle with an arbitrary center A on one ray and an arbitrary radius so that it intersects the other ray at least once. Let B be one of those intersections.
+<Circle Tool>Construct a circle with another arbitrary center C on the first ray and radius BC, intersecting circle A at D.
+<Line Tool>Construct line OD.","['Circle Tool', 'Circle Tool', 'Line Tool']","[['O'], ['B', 'A'], ['C', 'BC', 'D'], ['OD']]",['O']
+16,Beta,https://euclidea.fandom.com/wiki/Cut_Rectangle,"Description: Construct a line through the given point that cuts the rectangle into two parts of equal area.Given the rectangle ABCD and the point O.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a line through the given point that cuts the rectangle into two parts of equal area.Given the rectangle ABCD and the point O.
+Solution: ","Construct line AC, a diagonal of the rectangle
+Construct line BD, the other diagonal, intersecting AC at E
+Construct line OE
+Rationale: Any way you cut the rectangle with a line, if it passes through its centre, then it will cut the rectangle into two equal halves. So, you just need to find the centre of the rectangle by tracing its diagonals.
+","<Line Tool>Construct line AC, a diagonal of the rectangle
+<Line Tool>Construct line BD, the other diagonal, intersecting AC at E
+<Line Tool>Construct line OE","['Line Tool', 'Line Tool', 'Line Tool']","[['ABCD', 'O'], ['AC'], ['E', 'BD'], ['OE']]","['ABCD', 'O']"
+17,Beta,https://euclidea.fandom.com/wiki/Drop_a_Perpendicular,"Description: Drop a perpendicular from the point to the line.Let O be the point.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Drop a perpendicular from the point to the line.Let O be the point.
+Solution: ","Construct a circle with center O and an arbitrary radius so that it intersects the line at two points A and B
+Construct the perpendicular bisector of AB
+Rationale: Solution 2L has you construct an arbitrary isosceles triangle ABO with O as its apex. The perpendicular bisector of its base will pass through its apex and therefore will answer the puzzle.
+","<Line Tool>Construct a circle with center O and an arbitrary radius so that it intersects the line at two points A and B
+<Perpendicular Bisector Tool>Construct the perpendicular bisector of AB","['Line Tool', 'Perpendicular Bisector Tool']","[['O'], ['B', 'A'], ['AB']]",['O']
+18,Beta,https://euclidea.fandom.com/wiki/Erect_a_Perpendicular,"Description: Erect a perpendicular from the point on the line.Let O be the point, and A and B two arbitrary points on the line so that O is between them.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Erect a perpendicular from the point on the line.Let O be the point, and A and B two arbitrary points on the line so that O is between them.
+Solution: ","Construct the angle bisector of  angle AOB
+Rationale: Solution 1L is simple as a line is an angle of 180°, so its angle bisector will divide it into two angles of 90° and will therefore be perpendicular to it. Just have the vertex of the 180° angle be point O.
+",<Angle Bisector Tool>Construct the angle bisector of  angle AOB,['Angle Bisector Tool'],"[['O', 'A', 'B', 'O'], ['AOB']]","['O', 'A', 'B', 'O']"
+19,Beta,https://euclidea.fandom.com/wiki/Perpendicular_Tool,"Description: You have discovered the Perpendicular tool. Click on the line, then on the point.Let A be a line and B be a point, whether B is on or off line A (the level shows B off of A).
+Tool List: ['Perpendicular Tool']
+Solution: ","Description: You have discovered the Perpendicular tool. Click on the line, then on the point.Let A be a line and B be a point, whether B is on or off line A (the level shows B off of A).
+Solution: ","With the perpendicular tool active, select the line, then the point.
+Rationale: The perpendicular tool works by either clicking on a point then on a line; or by clicking on a line and then a point; or by click-and-drag on a line and releasing on a point.  Before the final action, the tool gives a visualization of where the perpendicular will appear.  The tool works whether or not the point is on the line (the elementary actions to drop a perpendicular are different than the actions to erect a perpendicular, but since both cost 3E, this tool performs both).  The tool is unable to erect a perpendicular to an implied line (that is, knowing two points that form a line is not enough, at least a portion of the line itself has to already be constructed); however, it can construct a perpendicular that does not intersect the ray or line segment selected as the line without having to extend that segment.
+","<Perpendicular Tool>With the perpendicular tool active, select the line, then the point.",['Perpendicular Tool'],"[['A', 'B', 'B', 'A', 'B', 'A'], []]","['A', 'B', 'B', 'A', 'B', 'A']"
+20,Beta,https://euclidea.fandom.com/wiki/Tangent_to_Circle_at_Point,"Description: Construct a tangent to the circle at the given point.Let O be the center of the circle and A the point on it.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a tangent to the circle at the given point.Let O be the center of the circle and A the point on it.
+Solution: ","Construct line OA
+Construct the perpendicular to the line OA from point A
+Rationale: Solution 2L is easy as a tangent is simply a line perpendicular to a radius at a point on the circle.
+","<Line Tool>Construct line OA
+<Perpendicular Tool>Construct the perpendicular to the line OA from point A","['Line Tool', 'Perpendicular Tool']","[['O', 'A'], ['OA'], []]","['O', 'A']"
+21,Beta,https://euclidea.fandom.com/wiki/Circle_Tangent_to_Line,"Description: Construct a circle with the given center that is tangent to the given line.Let O be the center.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a circle with the given center that is tangent to the given line.Let O be the center.
+Solution: ","Construct the perpendicular to the line from point O, intersecting the line at A
+Construct the circle with center O and radius OA
+Rationale: A tangent is a line perpendicular to a radius at the point of tangency on the circle.
+","<Perpendicular Tool>Construct the perpendicular to the line from point O, intersecting the line at A
+<Circle Tool>Construct the circle with center O and radius OA","['Perpendicular Tool', 'Circle Tool']","[['O'], ['A'], ['OA']]",['O']
+22,Beta,https://euclidea.fandom.com/wiki/Circle_in_Rhombus,"Description: Inscribe a circle in the rhombus.Given the rhombus ABCD.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Inscribe a circle in the rhombus.Given the rhombus ABCD.
+Solution: ","Construct line AC, a diagonal of the rhombus
+Construct line BD, the other diagonal of the rhombus, intersecting AC at O
+Construct the perpendicular to AB through O, intersecting AB at E
+Construct the circle with center O radius OE
+Rationale: In a rhombus, the inscribed circle is a circle with the same center as the rhombus and tangent to its sides. Tracing the diagonals gives you the center, then tracing the perpendicular to any of its sides through the center gives you the radius.
+","<Line Tool>Construct line AC, a diagonal of the rhombus
+<Line Tool>Construct line BD, the other diagonal of the rhombus, intersecting AC at O
+<Perpendicular Tool>Construct the perpendicular to AB through O, intersecting AB at E
+<Circle Tool>Construct the circle with center O radius OE","['Line Tool', 'Line Tool', 'Perpendicular Tool', 'Circle Tool']","[['ABCD'], ['AC'], ['O', 'BD'], ['AB', 'E'], ['OE']]",['ABCD']
+23,Gamma,https://euclidea.fandom.com/wiki/Chord_Midpoint,"Description: Construct a chord whose midpoint is given.Let A be the center and B the given midpoint.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a chord whose midpoint is given.Let A be the center and B the given midpoint.
+Solution: ","Construct line AB
+Construct the perpendicular to AB through B
+Rationale: The perpendicular bisector of any chord passes through the center of the circle. Line AB being that perpendicular bisector, the chord is simply the segment that's perpendicular to it and passes through the midpoint.
+","<Line Tool>Construct line AB
+<Perpendicular Tool>Construct the perpendicular to AB through B","['Line Tool', 'Perpendicular Tool']","[['A', 'B'], ['AB'], []]","['A', 'B']"
+24,Gamma,https://euclidea.fandom.com/wiki/Triangle_by_Angle_and_Orthocenter,"Description: Construct a segment connecting the sides of the angle to get a triangle whose orthocenter is in the point O.Let A be the vertex of the angle.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a segment connecting the sides of the angle to get a triangle whose orthocenter is in the point O.Let A be the vertex of the angle.
+Solution: ","Construct the perpendicular to one side R1 of the angle through O, intersecting the second side at A
+Construct the perpendicular to the second side R2 of the angle through O, intersecting the first side at B
+Construct line AB
+Rationale: O is the orthocenter and so is the point where the altitudes of the triangle intersect. The perpendicular to any side that passes through O is therefore an altitude and passes through the vertex opposite to that side.
+","<Perpendicular Tool>Construct the perpendicular to one side R1 of the angle through O, intersecting the second side at A
+<Perpendicular Tool>Construct the perpendicular to the second side R2 of the angle through O, intersecting the first side at B
+<Line Tool>Construct line AB","['Perpendicular Tool', 'Perpendicular Tool', 'Line Tool']","[['O', 'A'], [], ['B'], ['AB']]","['O', 'A']"
+25,Gamma,https://euclidea.fandom.com/wiki/Intersection_of_Perpendicular_Bisectors,"Description: Construct a segment connecting the sides of the angle to get a triangle whose perpendicular bisectors are intersected in the point O.Let A be the vertex of the angle.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a segment connecting the sides of the angle to get a triangle whose perpendicular bisectors are intersected in the point O.Let A be the vertex of the angle.
+Solution: ","Construct the circle with center O and radius OA, intersecting the sides of the angle at B and C
+Construct line BC
+Rationale: The point O is the circumcenter of the triangle, which means that there's a circle with center O that passes through all three vertices of the triangle. You know the center and you know the radius.
+","<Circle Tool>Construct the circle with center O and radius OA, intersecting the sides of the angle at B and C
+<Line Tool>Construct line BC","['Circle Tool', 'Line Tool']","[['O', 'A'], ['B', 'C', 'OA'], ['BC']]","['O', 'A']"
+26,Gamma,https://euclidea.fandom.com/wiki/Three_equal_segments_-_1,"Description: Given an angle ABC and a point M inside it, find points D on BA and E on BC and construct segments DM and ME such that BD = DM = ME.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Given an angle ABC and a point M inside it, find points D on BA and E on BC and construct segments DM and ME such that BD = DM = ME.
+Solution: ","Construct the perpendicular bisector of BM, intersecting AB at D
+Construct the circle with center M and radius DM, intersecting BC at E and F
+Construct line DM
+Construct line ME
+Rationale: Point D is easy. Since it's equidistant to both B and M, then it must be on their perpendicular bisector.
+","<Perpendicular Tool>Construct the perpendicular bisector of BM, intersecting AB at D
+<Circle Tool>Construct the circle with center M and radius DM, intersecting BC at E and F
+<Line Tool>Construct line DM
+<Line Tool>Construct line ME","['Perpendicular Tool', 'Circle Tool', 'Line Tool', 'Line Tool']","[['ABC', 'M', 'D', 'BA', 'E', 'BC', 'DM', 'ME', 'BD', 'DM', 'ME'], ['AB', 'BM'], ['F'], [], []]","['ABC', 'M', 'D', 'BA', 'E', 'BC', 'DM', 'ME', 'BD', 'DM', 'ME']"
+27,Gamma,https://euclidea.fandom.com/wiki/Circle_through_Point_Tangent_to_Line,"Description: Construct a circle through the point A that is tangent to the given line at the point B.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a circle through the point A that is tangent to the given line at the point B.
+Solution: ","Construct the perpendicular bisector of AB
+Construct the perpendicular to the line from B, intersecting the perpendicular bisector at O
+Construct the circle with center O and radius OA (or OB)
+Rationale: The center has to be on the perpendicular bisector of AB since OA=OB and on the perpendicular to the line from B since the line is tangent to it at B.
+","<Perpendicular Tool>Construct the perpendicular bisector of AB
+<Perpendicular Tool>Construct the perpendicular to the line from B, intersecting the perpendicular bisector at O
+<Circle Tool>Construct the circle with center O and radius OA (or OB)","['Perpendicular Tool', 'Perpendicular Tool', 'Circle Tool']","[['A', 'B'], ['AB'], ['O'], ['OB', 'OA']]","['A', 'B']"
+28,Gamma,https://euclidea.fandom.com/wiki/Midpoints_of_Trapezoid_Bases,"Description: Construct a line passing through the midpoints of the trapezoid bases.Given the trapezoid ABCD.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a line passing through the midpoints of the trapezoid bases.Given the trapezoid ABCD.
+Solution: ","Construct the perpendicular bisector of the base AB, intersecting AB at E
+Construct the perpendicular bisector of the base CD, intersecting CD at F
+Construct line EF
+Rationale: Since the perpendicular bisector of a segment intersects its segment at its midpoint, you can construct the midpoints of the bases and join them, resolving the puzzle.
+","<Perpendicular Tool>Construct the perpendicular bisector of the base AB, intersecting AB at E
+<Perpendicular Tool>Construct the perpendicular bisector of the base CD, intersecting CD at F
+<Line Tool>Construct line EF","['Perpendicular Tool', 'Perpendicular Tool', 'Line Tool']","[['ABCD'], ['AB', 'E'], ['CD', 'F'], ['EF']]",['ABCD']
+29,Gamma,https://euclidea.fandom.com/wiki/Angle_of_45%C2%B0,"Description: Construct an angle of 45° with the given side.Let A be the initial point of the given ray and B a distinct arbitrary point on that ray.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct an angle of 45° with the given side.Let A be the initial point of the given ray and B a distinct arbitrary point on that ray.
+Solution: ","Construct the perpendicular to the ray from A; let C be a distinct arbitrary point on that perpendicular
+Construct the angle bisector of  angle BAC
+Rationale: By tracing the perpendicular to the line, the angle bisector will divide the 90° angle into two 45° angles.
+","<Perpendicular Tool>Construct the perpendicular to the ray from A; let C be a distinct arbitrary point on that perpendicular
+<Angle Bisector Tool>Construct the angle bisector of  angle BAC","['Perpendicular Tool', 'Angle Bisector Tool']","[['A', 'B'], ['C'], ['BAC']]","['A', 'B']"
+30,Gamma,https://euclidea.fandom.com/wiki/Lozenge,"Description: Construct a rhombus with the given side and an angle of 45° in a vertex.Given the side AB (A on the left to match the orientation in explore mode)
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a rhombus with the given side and an angle of 45° in a vertex.Given the side AB (A on the left to match the orientation in explore mode)
+Solution: ","Construct the perpendicular to AB from A; let C be a distinct arbitrary point on that perpendicular (above A, to match the orientation in explore mode)
+Construct the angle bisector of  angle BAC
+Construct the circle with center A and radius AB, intersecting the angle bisector at D and line AC at E with E on the side of A opposite from C
+Construct the perpendicular to AC through D
+Construct line BE
+Rationale: For the 5L solution, the angle bisector of AB and its perpendicular AC forms the required 45° angle, and circle A determines an equidistant point D for side AD.  Any perpendicular through AC is parallel to AB, forming the next side through D.  Finally, since triangle ABE is a right isosceles triangle, the extension of line BE forms the final side also at a 45° angle.
+","<Perpendicular Tool>Construct the perpendicular to AB from A; let C be a distinct arbitrary point on that perpendicular (above A, to match the orientation in explore mode)
+<Angle Bisector Tool>Construct the angle bisector of  angle BAC
+<Circle Tool>Construct the circle with center A and radius AB, intersecting the angle bisector at D and line AC at E with E on the side of A opposite from C
+<Perpendicular Tool>Construct the perpendicular to AC through D
+<Line Tool>Construct line BE","['Perpendicular Tool', 'Angle Bisector Tool', 'Circle Tool', 'Perpendicular Tool', 'Line Tool']","[['AB', 'A'], ['C'], ['BAC'], ['AC', 'E', 'D'], [], ['BE']]","['AB', 'A']"
+31,Gamma,https://euclidea.fandom.com/wiki/Center_of_Quadrilateral,"Description: Construct the midpoint of the segment that connects the midpoints of the diagonals of the quadrilateral.Given the quadrilateral ABCD (arbitrary which vertex is A)
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct the midpoint of the segment that connects the midpoints of the diagonals of the quadrilateral.Given the quadrilateral ABCD (arbitrary which vertex is A)
+Solution: ","Construct the perpendicular bisector of AB, intersecting AB at E
+Construct the perpendicular bisector of CD, intersecting CD at F
+Construct the perpendicular bisector of EF
+Construct line EF
+Point at the intersection of EF and its perpendicular bisector
+Rationale: Consider the triangle ABC created by drawing diagonal AC with its midpoint H.  The smaller triangle AEH shares angle A, and its two sides AE and AH are both half the length of the larger AB and AC, so line EH is parallel to line BC and half its length.  Simlarly, considering triangle CDB by drawing diagonal BD with its midpoint I, the smaller triangle DFI demonstrates that FI is parallel to line BC and half its length.  With two sides parallel and the same length, the quadrilateral EHFI is now known to be a parallelogram.  Since the diagonals of a parallelogram intersect at their respective midpoints, the problem of finding the midpoint of diagonal HI is equivalent to finding the midpoint of diagonal EF.
+","<Perpendicular Tool>Construct the perpendicular bisector of AB, intersecting AB at E
+<Perpendicular Tool>Construct the perpendicular bisector of CD, intersecting CD at F
+<Perpendicular Tool>Construct the perpendicular bisector of EF
+<Line Tool>Construct line EF
+<Perpendicular Tool>Point at the intersection of EF and its perpendicular bisector","['Perpendicular Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Line Tool', 'Perpendicular Tool']","[['ABCD', 'A'], ['AB', 'E'], ['CD', 'F'], ['EF'], [], []]","['ABCD', 'A']"
+32,Delta,https://euclidea.fandom.com/wiki/Double_Segment,"Description: Construct a point C on the line AB such that |AC|=2|AB| using only a compass.
+Tool List: ['Point Tool', 'Circle Tool', 'Intersect Tool']
+Solution: ","Description: Construct a point C on the line AB such that |AC|=2|AB| using only a compass.
+Solution: ","Construct the circle with center A and radius AB
+Construct the circle with center B and radius AB, intersecting circle A at D and E
+Construct the circle with center D and radius DE, intersecting circle B at C
+Point at C
+Rationale: ABD and ABE are both equilateral triangles by construction, with 
+
+
+
+∠
+
+
+{\displaystyle \angle}
+
+DAB = 60°.  Although not traced, segment DE would be the perpendicular bisector of AB, intersecting AB at its midpoint M, and where 
+
+
+
+∠
+
+
+{\displaystyle \angle}
+
+DMB is 90°.  We are trying to find the point C on circle B that is collinear with AB, which would make AC a diameter of B and thus length 2|AB|; it would also mean |MC|=3|AB|/2.  The height of an equilateral triangle, DM, is √3/2 times its base, so segment DE and thus the radius of circle D is length √3|AB|.  Therefore, the sides DM, MC, and CD are in the ratio 1:√3:2 of a 30-60-90 triangle, and we have established that the intersection of circles B and D is indeed our desired point C.
+","<Circle Tool>Construct the circle with center A and radius AB
+<Circle Tool>Construct the circle with center B and radius AB, intersecting circle A at D and E
+<Circle Tool>Construct the circle with center D and radius DE, intersecting circle B at C
+<Point Tool>Point at C","['Circle Tool', 'Circle Tool', 'Circle Tool', 'Point Tool']","[['C', 'AB', 'AC', 'AB'], ['A'], ['B', 'E', 'D'], ['DE'], []]","['C', 'AB', 'AC', 'AB']"
+33,Delta,https://euclidea.fandom.com/wiki/Angle_of_60%C2%B0_-_2,"Description: Construct a straight line through the given point that makes an angle of 60° with the given line.Let A be the given point.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a straight line through the given point that makes an angle of 60° with the given line.Let A be the given point.
+Solution: ","Construct circle B with radius AB, intersecting the line at point C
+Construct circle C with radius AC, intersecting circle B at point D
+Construct circle D with radius CD, intersecting circle C at points E and F (E on the left to match the orientation in explore mode)
+Construct line AE
+Rationale: The 4E reflection solution starts by using circle B and C to reflect point A across the line BC to point D, with AD perpendicular to the line.  Then circle D creates the equilateral triangle CDE by construction, so the length of arc ED in circle C is 60°.  By the inscribed angle theorem, 
+
+
+
+∠
+
+
+{\displaystyle \angle}
+
+EAD is thus 30°.  If point G is the intersection of AE with the original line, and H the midpoint of AD, we have just constructed a 30-60-90 triangle, with 
+
+
+
+∠
+
+
+{\displaystyle \angle}
+
+AGH the desired 60°.
+","<Circle Tool>Construct circle B with radius AB, intersecting the line at point C
+<Circle Tool>Construct circle C with radius AC, intersecting circle B at point D
+<Circle Tool>Construct circle D with radius CD, intersecting circle C at points E and F (E on the left to match the orientation in explore mode)
+<Line Tool>Construct line AE","['Circle Tool', 'Circle Tool', 'Circle Tool', 'Line Tool']","[['A'], ['B', 'AB', 'C'], ['AC', 'D'], ['CD', 'E', 'F'], ['AE']]",['A']
+34,Delta,https://euclidea.fandom.com/wiki/Circumscribed_Equilateral_Triangle,"Description: Construct an equilateral triangle that is circumscribed about the circle and contains the given point.Let O be the center of the circle and A the point on it.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct an equilateral triangle that is circumscribed about the circle and contains the given point.Let O be the center of the circle and A the point on it.
+Solution: ","Construct line OA, intersecting the circle at B
+Construct the perpendicular to OA from A
+Construct the circle with center B and radius OB, intersecting the circle at C and D, and line OA at E
+Construct line CE
+Construct line DE
+Rationale: Line OA forms an altitude of the equilateral triangle, with A at the midpoint of the base.  Both constructions use circle B to determine the two sides at a 30° angle from the apex; this can be seen since triangles BCO and BDO are equilateral by construction, and angles ECO and EDO are 90 by Thales' theorem.  Having drawn tangents through C and D, point E is the apex of the desired triangle.  The final leg of the triangle through A is built with the perpendicular tool for the 5L solution, and by inscribing an equilateral triangle into the second larger circle O in the 6E solution.
+","<Line Tool>Construct line OA, intersecting the circle at B
+<Perpendicular Tool>Construct the perpendicular to OA from A
+<Circle Tool>Construct the circle with center B and radius OB, intersecting the circle at C and D, and line OA at E
+<Line Tool>Construct line CE
+<Line Tool>Construct line DE","['Line Tool', 'Perpendicular Tool', 'Circle Tool', 'Line Tool', 'Line Tool']","[['O', 'A'], ['B', 'OA'], [], ['E', 'C', 'OB', 'D'], ['CE'], ['DE']]","['O', 'A']"
+35,Delta,https://euclidea.fandom.com/wiki/Equilateral_Triangle_in_Circle,"Description: Inscribe an equilateral triangle in the circle using the given point as a vertex. The center of the circle is not given.Let A be the vertex.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Inscribe an equilateral triangle in the circle using the given point as a vertex. The center of the circle is not given.Let A be the vertex.
+Solution: ","Construct a circle with center A and an arbitrary radius, intersecting the original circle at B and C
+Construct the circle with center B and radius AB, intersecting circle A at D and E
+Construct the perpendicular bisector of CD, intersecting the original circle at F
+Construct the perpendicular bisector of CE, intersecting the original circle at G
+Construct line FG (total 9E)
+Rationale: In both 5L solutions, triangle ABC is isosceles by construction, with points B and C reflections of one another across the line from A through the center of the circle, even if that line is not drawn.  The next step constructs enough information to also go through the center of the circle (the first solution by drawing a second circle where connecting points D and E would be the perpendicular bisector of a chord AB, the second solution by directly bisecting the chord AC to determine where points D and E lie), while also determining three points that form a pair of equilateral triangles (ABD and ABE for the first solution, ACD and ACE for the second solution).  The next two steps take the perpendicular bisector of the reflected point on circle A through points D and E; the angle bisector of the two points with A as the vertex would produce the same effect, but with a higher E cost.  Regardless of the arc angle of circle A subtended by CDB, constructing the angle bisector after subtracting out the 60° arc along the equilateral triangle means that the resulting bisector will be offset by half of that, or 30°, from the line of symmetry in isosceles triangle ABC, which provides the needed angle for two of the sides of the final triangle.  The third side FG is then trivial to construct.
+","<Circle Tool>Construct a circle with center A and an arbitrary radius, intersecting the original circle at B and C
+<Circle Tool>Construct the circle with center B and radius AB, intersecting circle A at D and E
+<Perpendicular Tool>Construct the perpendicular bisector of CD, intersecting the original circle at F
+<Perpendicular Tool>Construct the perpendicular bisector of CE, intersecting the original circle at G
+<Line Tool>Construct line FG (total 9E)","['Circle Tool', 'Circle Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Line Tool']","[['A'], ['B', 'C'], ['E', 'AB', 'D'], ['CD', 'F'], ['CE', 'G'], ['FG']]",['A']
+36,Delta,https://euclidea.fandom.com/wiki/Cut_Two_Rectangles,"Description: Construct a line that cuts each of the rectangles into two parts of equal area.Given the rectangles ABCD and EFGH.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a line that cuts each of the rectangles into two parts of equal area.Given the rectangles ABCD and EFGH.
+Solution: ","Construct line AC, a diagonal of the first rectangle
+Construct line BD, the other diagonal, intersecting the previous diagonal at I
+Construct line EG, a diagonal of the second rectangle
+Construct line FH, the other diagonal, intersecting the previous diagonal at J
+Construct line IJ
+Rationale: Any straight line through the center of a rectangle divides the rectangle into equivalent halves (180° rotational symmetry around its center). Find each rectangle's center and draw one line through both points.
+","<Line Tool>Construct line AC, a diagonal of the first rectangle
+<Line Tool>Construct line BD, the other diagonal, intersecting the previous diagonal at I
+<Line Tool>Construct line EG, a diagonal of the second rectangle
+<Line Tool>Construct line FH, the other diagonal, intersecting the previous diagonal at J
+<Line Tool>Construct line IJ","['Line Tool', 'Line Tool', 'Line Tool', 'Line Tool', 'Line Tool']","[['ABCD', 'EFGH'], ['AC'], ['I', 'BD'], ['EG'], ['FH', 'J'], ['IJ']]","['ABCD', 'EFGH']"
+37,Delta,https://euclidea.fandom.com/wiki/Square_Root_of_2,"Description: Let |AB|=1. Construct a point C on the ray AB such that the length of AC is equal to √2.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Let |AB|=1. Construct a point C on the ray AB such that the length of AC is equal to √2.
+Solution: ","Construct the perpendicular to AB from B
+Construct the circle with center B and radius AB, intersecting the perpendicular at D
+Construct the circle with center A and radius AD, intersecting the ray at C
+Point at C
+Rationale: 
+
+
+
+∠
+
+
+{\displaystyle \angle}
+
+ABD = 90o (step 1), and AB = 1 = BD (step 2).
+","<Perpendicular Tool>Construct the perpendicular to AB from B
+<Circle Tool>Construct the circle with center B and radius AB, intersecting the perpendicular at D
+<Circle Tool>Construct the circle with center A and radius AD, intersecting the ray at C
+<Point Tool>Point at C","['Perpendicular Tool', 'Circle Tool', 'Circle Tool', 'Point Tool']","[['AB', 'C', 'AB', 'AC'], ['B'], ['D'], ['A', 'AD'], []]","['AB', 'C', 'AB', 'AC']"
+38,Delta,https://euclidea.fandom.com/wiki/Square_Root_of_3,"Description: Let |AB|=1. Construct a point C on the ray AB such that the length of AC is equal to √3.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Let |AB|=1. Construct a point C on the ray AB such that the length of AC is equal to √3.
+Solution: ","Construct the circle with center B and radius AB, intersecting the ray at D
+Construct the circle with center D and radius BD, intersecting circle B at E
+Construct the circle with center A and radius AE, intersecting the ray at C
+Point at C
+Rationale: Using the 30-60-90 special triangle, we can deduce that side AE = 
+
+
+
+
+3
+
+
+
+{\displaystyle \sqrt{3}}
+
+. AE and AC are both radii of the circle centered at A.
+","<Circle Tool>Construct the circle with center B and radius AB, intersecting the ray at D
+<Circle Tool>Construct the circle with center D and radius BD, intersecting circle B at E
+<Circle Tool>Construct the circle with center A and radius AE, intersecting the ray at C
+<Point Tool>Point at C","['Circle Tool', 'Circle Tool', 'Circle Tool', 'Point Tool']","[['AB', 'C', 'AB', 'AC'], ['B', 'D'], ['E', 'BD'], ['A', 'AE'], []]","['AB', 'C', 'AB', 'AC']"
+39,Delta,https://euclidea.fandom.com/wiki/Angle_of_15%C2%B0,"Description: Construct an angle of 15° with the given side.Let A be the initial point of the given ray.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct an angle of 15° with the given side.Let A be the initial point of the given ray.
+Solution: ","Construct a circle with an arbitrary center B and radius AB, intersecting the ray at C
+Construct the circle with center C and radius BC, intersecting circle B at D and E (D above ray to match orientation of explore mode)
+Construct the angle bisector of  angle DAC
+Rationale: See Angle of 30° for the proof that points D and E form a 30° angle from A; the angle bisector thus gives the desired 15° angle.  The 3L solution constructs the angle bisector directly; the 5E solution uses the fact that BCD is an equilateral triangle, so the perpendicular bisector of CD (line BG) divides arc CD of circle A into two equal parts.  The 2V solution then reflects the first solution over ray A.
+","<Circle Tool>Construct a circle with an arbitrary center B and radius AB, intersecting the ray at C
+<Circle Tool>Construct the circle with center C and radius BC, intersecting circle B at D and E (D above ray to match orientation of explore mode)
+<Angle Bisector Tool>Construct the angle bisector of  angle DAC","['Circle Tool', 'Circle Tool', 'Angle Bisector Tool']","[['A'], ['B', 'AB', 'C'], ['E', 'BC', 'D'], ['DAC']]",['A']
+40,Delta,https://euclidea.fandom.com/wiki/Square_by_Opposite_Midpoints,"Description: Construct a square, given two midpoints of opposite sides.Let A and B be the given midpoints.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a square, given two midpoints of opposite sides.Let A and B be the given midpoints.
+Solution: ","Construct the circle with center A and radius AB
+Construct the circle with center B and radius AB, intersecting circle A at C and D.
+Construct the circle with center C and radius CB
+We draw the line (AC) that crosses the circle of center C in D.
+Rationale: There is a third 10 E alternative that might be simpler to understand than the previous ones. They are based on perendiculars line and perpendicular bisectors. 
+","<Circle Tool>Construct the circle with center A and radius AB
+<Circle Tool>Construct the circle with center B and radius AB, intersecting circle A at C and D.
+<Circle Tool>Construct the circle with center C and radius CB
+<Line Tool>We draw the line (AC) that crosses the circle of center C in D.","['Circle Tool', 'Circle Tool', 'Circle Tool', 'Line Tool']","[['A', 'B'], ['AB'], ['C', 'D'], ['CB'], ['AC']]","['A', 'B']"
+41,Delta,https://euclidea.fandom.com/wiki/Square_by_Adjacent_Midpoints,"Description: Construct a square, given two midpoints of adjacent sides.Let A and B be the given midpoints.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a square, given two midpoints of adjacent sides.Let A and B be the given midpoints.
+Solution: ","Construct line AB
+Construct the perpendicular to AB from A
+Construct the angle bisector of  angle BAC with C an arbitrary point on the perpendicular (to match the orientation of explore mode, choose C above A)
+Construct the perpendicular to that angle bisector through B, intersecting AC at D
+Construct the circle with center B and radius BD, intersecting BD at E and AC at F
+Construct the perpendicular bisector of BE
+Construct the perpendicular to the angle bisector of  angle BAC through F
+Rationale: The key to starting the construction is realizing that the sides of the squares through A and B are at a 45° to the line AB.  The different constructions then minimize the number of steps to get that angle (the 7L construction by using the angle bisector of a perpendicular at point A, the 10E construction by using circle C at the midpoint of AB to construct a 45-45-90 triangle ACD).  From there, the constructions use a different choice of circle to determine where remaining vertices of the square will fall.  The 7L solution constructs circle B with a radius that matches the length of a side of the square, such that F is the reflection of D across AB and found on the midpoint opposite from B, and E is the reflection of D across BF and twice as far as the final vertex.  The 10E solution instead constructs circle E at twice the size of circle C, where E is the midpoint of the final square and intersects the remaining three vertices.
+","<Line Tool>Construct line AB
+<Perpendicular Tool>Construct the perpendicular to AB from A
+<Perpendicular Tool>Construct the angle bisector of  angle BAC with C an arbitrary point on the perpendicular (to match the orientation of explore mode, choose C above A)
+<Perpendicular Tool>Construct the perpendicular to that angle bisector through B, intersecting AC at D
+<Circle Tool>Construct the circle with center B and radius BD, intersecting BD at E and AC at F
+<Perpendicular Tool>Construct the perpendicular bisector of BE
+<Perpendicular Tool>Construct the perpendicular to the angle bisector of  angle BAC through F","['Line Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Circle Tool', 'Perpendicular Tool', 'Perpendicular Tool']","[['A', 'B'], ['AB'], [], ['C', 'BAC'], ['AC', 'D'], ['E', 'BD', 'F'], ['BE'], []]","['A', 'B']"
+42,Epsilon,https://euclidea.fandom.com/wiki/Parallel_Line,"Description: Construct a line parallel to the given line and through the given point.Let A be the given point.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Intersect Tool']
+Solution: ","Description: Construct a line parallel to the given line and through the given point.Let A be the given point.
+Solution: ","Construct the perpendicular to the line through A
+Construct the perpendicular to the previous perpendicular from A
+Rationale: The 2L solution works because any two lines both perpendicular to a third a parallel to one another.
+","<Perpendicular Tool>Construct the perpendicular to the line through A
+<Perpendicular Tool>Construct the perpendicular to the previous perpendicular from A","['Perpendicular Tool', 'Perpendicular Tool']","[['A'], [], []]",['A']
+43,Epsilon,https://euclidea.fandom.com/wiki/Parallel_Tool,"Description: You have discovered the Parallel tool. Click on the line, then on the point.
+Tool List: ['Parallel Tool']
+Solution: ","Description: You have discovered the Parallel tool. Click on the line, then on the point.
+Solution: ","With the parallel tool active, click on the line then on the point.
+Rationale: The parallel tool works by clicking on a point then clicking on a line, by clicking on a line then on a point, or by click-and-hold on a line and dragging to a point.  When starting on the line, the tool visualizes where the parallel line will land before selecting the point.  The line (or line segment) must already be constructed; there is no way to draw a line parallel to the implied line between two arbitrary points (including when the implied line is a decoration such as the one drawn by the Perpendicular Bisector Tool).
+","<Parallel Tool>With the parallel tool active, click on the line then on the point.",['Parallel Tool'],"[[], []]",[]
+44,Epsilon,https://euclidea.fandom.com/wiki/Parallelogram_by_Three_Vertices,"Description: Construct a parallelogram whose three of four vertices are given.Let A, B and C be the given vertices (to match the orientation of explore mode, place A on top and B on the left)
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Construct a parallelogram whose three of four vertices are given.Let A, B and C be the given vertices (to match the orientation of explore mode, place A on top and B on the left)
+Solution: ","Construct line AB
+Construct line BC
+Construct the parallel to AB through C
+Construct the parallel to BC through A
+Rationale: The 4L solution minimizes moves by directly using two parallel lines, which is the defining characteristic of a parallelogram.
+","<Line Tool>Construct line AB
+<Line Tool>Construct line BC
+<Parallel Tool>Construct the parallel to AB through C
+<Parallel Tool>Construct the parallel to BC through A","['Line Tool', 'Line Tool', 'Parallel Tool', 'Parallel Tool']","[['A', 'B', 'C', 'A', 'B'], ['AB'], ['BC'], [], []]","['A', 'B', 'C', 'A', 'B']"
+45,Epsilon,https://euclidea.fandom.com/wiki/Line_Equidistant_from_Two_Points_-_1,"Description: Construct a line through the point C and at equal distance from the points A and B but that does not pass between them.Given points A, B, and C (C already labeled, choice of A and B is arbitrary):
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Construct a line through the point C and at equal distance from the points A and B but that does not pass between them.Given points A, B, and C (C already labeled, choice of A and B is arbitrary):
+Solution: ","Construct line AB
+Construct the parallel to AB through C
+Rationale: Two points are equidistant from any line parallel to the two points; the 2L solution constructs this line directly.
+","<Line Tool>Construct line AB
+<Parallel Tool>Construct the parallel to AB through C","['Line Tool', 'Parallel Tool']","[['C', 'A', 'B', 'A', 'B', 'C', 'C', 'A', 'B'], ['AB'], []]","['C', 'A', 'B', 'A', 'B', 'C', 'C', 'A', 'B']"
+46,Epsilon,https://euclidea.fandom.com/wiki/Line_Equidistant_from_Two_Points_-_2,"Description: Construct a line through the point C that goes between the points A and B and that is at equal distance from them.Given points A, B, and C, with C labeled and the choice of A and B arbitrary:
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Construct a line through the point C that goes between the points A and B and that is at equal distance from them.Given points A, B, and C, with C labeled and the choice of A and B arbitrary:
+Solution: ","Construct the perpendicular bisector of AB
+Construct line AB, intersecting its perpendicular bisector at D
+Construct line CD
+Rationale: Two points are equidistant from any line drawn through the midpoint of those two points.  Once the midpoint is determined, finish the construction by connecting it to point C.
+","<Perpendicular Tool>Construct the perpendicular bisector of AB
+<Line Tool>Construct line AB, intersecting its perpendicular bisector at D
+<Line Tool>Construct line CD","['Perpendicular Tool', 'Line Tool', 'Line Tool']","[['C', 'A', 'B', 'A', 'B', 'C', 'C', 'A', 'B'], ['AB'], ['D'], ['CD']]","['C', 'A', 'B', 'A', 'B', 'C', 'C', 'A', 'B']"
+47,Epsilon,https://euclidea.fandom.com/wiki/Hash,"Description: Construct a line through the given point on which two pairs of parallel lines cut off equal line segments.Let O be the given point, and ABCD the parallelogram created by the two pairs of parallel lines (A on top to match the orientation of explore mode):
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Construct a line through the given point on which two pairs of parallel lines cut off equal line segments.Let O be the given point, and ABCD the parallelogram created by the two pairs of parallel lines (A on top to match the orientation of explore mode):
+Solution: ","Construct line AC, a diagonal of the parallelogram
+Construct the parallel to AC through O
+Rationale: The diagonal of the parallelogram is a line which cuts off equal line segments from both the pairs of parallel lines, so all other solutions are parallel to a diagonal of the parallelogram.
+","<Line Tool>Construct line AC, a diagonal of the parallelogram
+<Parallel Tool>Construct the parallel to AC through O","['Line Tool', 'Parallel Tool']","[['O', 'ABCD', 'A'], ['AC'], []]","['O', 'ABCD', 'A']"
+48,Epsilon,https://euclidea.fandom.com/wiki/Shift_Angle,"Description: Construct an angle from the given point that is equal to the given angle so that their sides are parallel.Let O be the given point.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Construct an angle from the given point that is equal to the given angle so that their sides are parallel.Let O be the given point.
+Solution: ","Construct the parallel to one side of the angle through O
+Construct the parallel to the other side of the angle through O
+Rationale: Completing the parallelogram with A and O forming one diagonal produces the shifted angle.  For the first 6E solution, two parallel lines are constructed by sharing the same reflection of point O across point A, then reflecting B across AC to E, as well as across AD to F.  For the alternate solution, the two parallel lines are constructed by rhombi with side length OA by sharing circle A and O.
+","<Angle Bisector Tool>Construct the parallel to one side of the angle through O
+<Angle Bisector Tool>Construct the parallel to the other side of the angle through O","['Angle Bisector Tool', 'Angle Bisector Tool']","[['O'], [], []]",['O']
+49,Epsilon,https://euclidea.fandom.com/wiki/Line_Equidistant_from_Two_Lines,"Description: Construct a straight line parallel to the given parallel lines that lies at equal distance from them.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Construct a straight line parallel to the given parallel lines that lies at equal distance from them.
+Solution: ","Construct the perpendicular to one line from an arbitrary point A on it, intersecting the other line at B
+Construct the perpendicular bisector of AB
+Rationale: The desired line is the parallel line through any midpoint of any other line that crosses the original two lines.  For the 2L construction, use of a perpendicular means that the perpendicular bisector can easily find the final line.
+","<Perpendicular Tool>Construct the perpendicular to one line from an arbitrary point A on it, intersecting the other line at B
+<Perpendicular Tool>Construct the perpendicular bisector of AB","['Perpendicular Tool', 'Perpendicular Tool']","[[], ['B', 'A'], ['AB']]",[]
+50,Epsilon,https://euclidea.fandom.com/wiki/Circumscribed_Square,"Description: Circumscribe a square about the circle. Two of its sides should be parallel to the given line.Let O be the center of the given circle.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Circumscribe a square about the circle. Two of its sides should be parallel to the given line.Let O be the center of the given circle.
+Solution: ","Construct the perpendicular to the line through O, intersecting the circle at A and B
+Construct the perpendicular to AB from A
+Construct the perpendicular to AB from B
+Construct the circle with center A and radius OA, intersecting the perpendicular to AB from A at C and D
+Construct the perpendicular to CD from C
+Construct the perpendicular to CD from D (total 16E)
+Rationale: To have sides parallel with the given line, it is necessary to start with the diameter of the circle that is perpendicular to that line.  From there, minimizing the number of E moves in the 6L solution prefers the use of further perpendiculars rather than the parallel tool, and circle A rather than a perpendicular through the center of the circle to find useful points for constructing the two sides.
+","<Perpendicular Tool>Construct the perpendicular to the line through O, intersecting the circle at A and B
+<Perpendicular Tool>Construct the perpendicular to AB from A
+<Perpendicular Tool>Construct the perpendicular to AB from B
+<Circle Tool>Construct the circle with center A and radius OA, intersecting the perpendicular to AB from A at C and D
+<Perpendicular Tool>Construct the perpendicular to CD from C
+<Perpendicular Tool>Construct the perpendicular to CD from D (total 16E)","['Perpendicular Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Circle Tool', 'Perpendicular Tool', 'Perpendicular Tool']","[['O'], ['B', 'A'], ['AB'], [], ['C', 'OA', 'D'], ['CD'], []]",['O']
+51,Epsilon,https://euclidea.fandom.com/wiki/Square_in_Square,"Description: Inscribe a square in the square. A vertex is given.Given the square ABCD and E the given vertex.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Inscribe a square in the square. A vertex is given.Given the square ABCD and E the given vertex.
+Solution: ","Construct the circle with center A and radius AE, intersecting AD at F
+Construct the perpendicular to AD through F, intersecting BC at G
+Construct line EG
+Construct the perpendicular to EG from E, intersecting AD at H
+Construct the perpendicular to EG from G, intersecting CD at I
+Construct the line HI (total 12E)
+Rationale: Each vertex of the inscribed square has the same offset from the corresponding vertex of the original square; or put another way, the four triangles around the inscribed square are similar.  The 6L solution favors a 90° rotation of E to F at vertex A, followed by translating it to side BC (since ABCD is a square, a perpendicular to AD is parallel to AB, and ABGF is a rectangle).  From there, the other sides of the square can be obtained by perpendiculars or by connecting points.
+","<Circle Tool>Construct the circle with center A and radius AE, intersecting AD at F
+<Perpendicular Tool>Construct the perpendicular to AD through F, intersecting BC at G
+<Line Tool>Construct line EG
+<Perpendicular Tool>Construct the perpendicular to EG from E, intersecting AD at H
+<Perpendicular Tool>Construct the perpendicular to EG from G, intersecting CD at I
+<Line Tool>Construct the line HI (total 12E)","['Circle Tool', 'Perpendicular Tool', 'Line Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Line Tool']","[['A', 'ABCD', 'E'], ['AD', 'AE', 'F'], ['G', 'BC'], ['EG'], ['H'], ['I', 'CD'], ['HI']]","['A', 'ABCD', 'E']"
+52,Epsilon,https://euclidea.fandom.com/wiki/Circle_Tangent_to_Square_Side,"Description: Construct a circle that is tangent to a side of the square and goes through the vertices of the opposite side.Given the square ABCD (AB on the bottom for the solution to match the hint mode orientation)
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Construct a circle that is tangent to a side of the square and goes through the vertices of the opposite side.Given the square ABCD (AB on the bottom for the solution to match the hint mode orientation)
+Solution: ","Construct the perpendicular bisector of AB, intersecting CD at E and AB at F
+Construct the perpendicular bisector of AE, intersecting EF at G
+Construct the circle with center G and radius AG (or EG)
+Rationale: Consider point A at coordinate (0, 0) and B at (8, 0), such that AB is length 8.  The perpendicular bisector of AB then forms point E along CD at coordinate (4, 8) and F along AB at (0, 8).  The length AF is thus 4; if we can find the point G along EF such that FG is 3 units away from line AB [that is, at coordinate (4, 3)], it will form a 3-4-5 Egyptian right triangle, where AG is then 5 units.  And by subtraction from EF, the length of EG is 5 units, putting point G 5 units away from line CD.  Thus, a circle of radius 5 from point G is tangent to CD and crosses through A and B.  To find point G, consider that the slope of AE is 8:4, so its perpendicular bisector has a slope -4:8 or -1:2.  Line AE crosses its perpendicular bisector at point (2, 4), and that bisector then crosses EF at point (4, 3), giving the desired point G at the center of the circle.
+","<Perpendicular Tool>Construct the perpendicular bisector of AB, intersecting CD at E and AB at F
+<Perpendicular Tool>Construct the perpendicular bisector of AE, intersecting EF at G
+<Circle Tool>Construct the circle with center G and radius AG (or EG)","['Perpendicular Tool', 'Perpendicular Tool', 'Circle Tool']","[['ABCD', 'AB'], ['E', 'CD', 'F'], ['G', 'AE', 'EF'], ['AG', 'EG']]","['ABCD', 'AB']"
+53,Epsilon,https://euclidea.fandom.com/wiki/Regular_Hexagon,"Description: Construct a regular hexagon with the given side.Given the side AB.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Construct a regular hexagon with the given side.Given the side AB.
+Solution: ","Construct the circle with center A and radius AB
+Construct the circle with center B and radius AB, intersecting circle A at C and D (C below AB to match the orientation of explore mode)
+Construct line AC, intersecting circle A at E
+Construct line BC, intersecting circle B at F
+Construct the parallel to AC through F
+Construct the parallel to BC through E, intersecting the the parallel to AC at G
+Construct the perpendicular bisector of DG (total 15E)
+Rationale: The internal angle at each vertex of a regular hexagon is 120°.  Both solutions start by constructing equilateral triangle ABC to establish a 60° external angle below AB, which in turn gives the desired 120° angle for isosceles triangles BAE and ABF forming the second and third sides of the hexagon.  From there, the 7L solution minimizes moves by directly constructing the remaining sides: the fourth and fifth are easy because a vertex is already present and opposite sides are parallel (the angle bisector tool can be used instead of the parallel tool, but with no difference in E-cost). The final side has no starting vertex, but it can be observed that EFG is an equilateral triangle with sides twice as long as AB, with D at the midpoint of its base, and therefore the perpendicular bisector of DG gives the remaining side.
+","<Circle Tool>Construct the circle with center A and radius AB
+<Circle Tool>Construct the circle with center B and radius AB, intersecting circle A at C and D (C below AB to match the orientation of explore mode)
+<Line Tool>Construct line AC, intersecting circle A at E
+<Line Tool>Construct line BC, intersecting circle B at F
+<Parallel Tool>Construct the parallel to AC through F
+<Parallel Tool>Construct the parallel to BC through E, intersecting the the parallel to AC at G
+<Perpendicular Tool>Construct the perpendicular bisector of DG (total 15E)","['Circle Tool', 'Circle Tool', 'Line Tool', 'Line Tool', 'Parallel Tool', 'Parallel Tool', 'Perpendicular Tool']","[['AB'], ['A'], ['B', 'C', 'D'], ['AC', 'E'], ['BC', 'F'], [], ['G'], ['DG']]",['AB']
+54,Zeta,https://euclidea.fandom.com/wiki/Point_Reflection,"Description: Reflect the segment across the point.Given the segment AB and O the point.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Reflect the segment across the point.Given the segment AB and O the point.
+Solution: ","Construct line AO
+Construct the circle with center O and radius AO, intersecting AO at C
+Construct the parallel to AB through C
+Construct line BO, intersecting the parallel to AB at D
+Point at D
+Rationale: None","<Line Tool>Construct line AO
+<Circle Tool>Construct the circle with center O and radius AO, intersecting AO at C
+<Parallel Tool>Construct the parallel to AB through C
+<Line Tool>Construct line BO, intersecting the parallel to AB at D
+<Point Tool>Point at D","['Line Tool', 'Circle Tool', 'Parallel Tool', 'Line Tool', 'Point Tool']","[['AB', 'O'], ['AO'], ['C'], [], ['BO', 'D'], []]","['AB', 'O']"
+55,Zeta,https://euclidea.fandom.com/wiki/Reflection,"Description: Reflect the segment across the line.Given the segment AB.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Reflect the segment across the line.Given the segment AB.
+Solution: ","Construct a circle with an arbitrary center C on the line and radius AC
+Construct a circle with another arbitrary center D on the line and radius AD, intersecting circle C at E
+Construct a circle with an arbitrary center F on the line and radius BF
+Construct a circle with another arbitrary center G on the line and radius BG, intersecting circle F at H
+Construct line EH
+Rationale: None","<Line Tool>Construct a circle with an arbitrary center C on the line and radius AC
+<Line Tool>Construct a circle with another arbitrary center D on the line and radius AD, intersecting circle C at E
+<Line Tool>Construct a circle with an arbitrary center F on the line and radius BF
+<Line Tool>Construct a circle with another arbitrary center G on the line and radius BG, intersecting circle F at H
+<Line Tool>Construct line EH","['Line Tool', 'Line Tool', 'Line Tool', 'Line Tool', 'Line Tool']","[['AB'], ['AC', 'C'], ['E', 'D', 'AD'], ['BF', 'F'], ['G', 'BG', 'H'], ['EH']]",['AB']
+56,Zeta,https://euclidea.fandom.com/wiki/Copy_Segment,"Description: Construct a segment from the given point that is equal to the given segment and lies on the same line with it.Given the segment AB and the point C.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Construct a segment from the given point that is equal to the given segment and lies on the same line with it.Given the segment AB and the point C.
+Solution: ","Construct line AC
+Construct the perpendicular bisector of AC, intersecting AC at D
+Construct the circle with center D and radius BD, intersecting AC at E
+Point at E
+Rationale: None","<Line Tool>Construct line AC
+<Perpendicular Tool>Construct the perpendicular bisector of AC, intersecting AC at D
+<Circle Tool>Construct the circle with center D and radius BD, intersecting AC at E
+<Point Tool>Point at E","['Line Tool', 'Perpendicular Tool', 'Circle Tool', 'Point Tool']","[['AB', 'C'], ['AC'], ['D'], ['E', 'BD'], []]","['AB', 'C']"
+57,Zeta,https://euclidea.fandom.com/wiki/Given_Angle_Bisector,"Description: Construct two straight lines through the two given points respectively so that the given line is a bisector of the angle that they make.Let A and B be the given points.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Construct two straight lines through the two given points respectively so that the given line is a bisector of the angle that they make.Let A and B be the given points.
+Solution: ","Construct a circle with an arbitrary center C on the line and radius AC
+Construct a circle with another arbitrary center D on the line and radius AD, intersecting circle C at E
+Construct line BE, intersecting the line at F
+Construct line AF
+Rationale: Label the points A and B. Reflect A across the line to make A'. The line A'B is a reflection of AB.
+","<Line Tool>Construct a circle with an arbitrary center C on the line and radius AC
+<Line Tool>Construct a circle with another arbitrary center D on the line and radius AD, intersecting circle C at E
+<Line Tool>Construct line BE, intersecting the line at F
+<Line Tool>Construct line AF","['Line Tool', 'Line Tool', 'Line Tool', 'Line Tool']","[['A', 'B'], ['AC', 'C'], ['E', 'D', 'AD'], ['BE', 'F'], ['AF']]","['A', 'B']"
+58,Zeta,https://euclidea.fandom.com/wiki/Non-collapsing_Compass,"Description: Construct a circle with the given center and the radius equal to the length of the given segment.Given the segment AB and the point C.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Intersect Tool']
+Solution: ","Description: Construct a circle with the given center and the radius equal to the length of the given segment.Given the segment AB and the point C.
+Solution: ","Construct the perpendicular bisector of A and C.
+Construct the circle with center arbitrary point D on the perpendicular bisector of A and C and with radius DB.
+Construct the circle with center arbitrary point E on the perpendicular bisector of A and C and with radius EB, intersecting circle D at F.
+Construct the circle with center C and radius CF. (6E)
+Rationale: None","<Perpendicular Tool>Construct the perpendicular bisector of A and C.
+<Perpendicular Tool>Construct the circle with center arbitrary point D on the perpendicular bisector of A and C and with radius DB.
+<Perpendicular Tool>Construct the circle with center arbitrary point E on the perpendicular bisector of A and C and with radius EB, intersecting circle D at F.
+<Circle Tool>Construct the circle with center C and radius CF. (6E)","['Perpendicular Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Circle Tool']","[['AB', 'C'], ['A'], ['DB', 'D'], ['E', 'EB', 'F'], ['CF']]","['AB', 'C']"
+59,Zeta,https://euclidea.fandom.com/wiki/Compass_Tool,"Description: You have discovered the Non-collapsing Compass tool. Click on two points to set the radius length, then on the center of the circle.
+Tool List: ['Compass Tool']
+Solution: ","Description: You have discovered the Non-collapsing Compass tool. Click on two points to set the radius length, then on the center of the circle.
+Solution: ","With the compass tool active, click on one endpoint of the segment, then another endpoint of the segment, then on the destination point.
+Rationale: The compass tool works by selecting an initial radius (either click on the two points of the segment, or click-and-hold on one point of the segment and release on the second), followed by selecting a destination center with another click.  The tool visualizes the size of the circle before it lands in its final location, then adds dashed line decorations indicating the two parallel and equivalent-length radii used between the original two points and the destination circle.  Note that the decorations cannot be used as a target by other tools if they do not overlay an already-existing line.  The two original points do not have to lie on a circle, and Euclidea does not allow the destination point to be either of the two source points (even if it did, using the Circle Tool would be a less expensive alternative).  When copying an existing circle, it does not matter whether the first point is the center or on the circumference, as the selected radius will be the same either way for the destination center.
+","<Compass Tool>With the compass tool active, click on one endpoint of the segment, then another endpoint of the segment, then on the destination point.",['Compass Tool'],"[[], []]",[]
+60,Zeta,https://euclidea.fandom.com/wiki/Translate_Segment,"Description: Construct a segment from the given point parallel and equal to the given segment.Given the segment AB and the point C.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a segment from the given point parallel and equal to the given segment.Given the segment AB and the point C.
+Solution: ","Use the non-collapsing compass to construct the circle with radius AB and center C
+Construct the parallel to AB through C, intersecting the circle at two points
+Use the intersect tool on the circle and parallel line to select both points at once
+Rationale: None","<Circle Tool>Use the non-collapsing compass to construct the circle with radius AB and center C
+<Parallel Tool>Construct the parallel to AB through C, intersecting the circle at two points
+<Line Tool>Use the intersect tool on the circle and parallel line to select both points at once","['Circle Tool', 'Parallel Tool', 'Line Tool']","[['AB', 'C'], [], [], []]","['AB', 'C']"
+61,Zeta,https://euclidea.fandom.com/wiki/Triangle_by_Three_Sides,"Description: Construct a triangle with the side AB and the two other sides equal to the given segments.Given the other segments CD and EF.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a triangle with the side AB and the two other sides equal to the given segments.Given the other segments CD and EF.
+Solution: ","Use the non-collapsing compass to construct the circle with radius CD and center A
+Use the non-collapsing compass to construct the circle with radius EF and center B, intersecting circle A at G and H
+Construct line AG
+Construct line BG
+Rationale: None","<Circle Tool>Use the non-collapsing compass to construct the circle with radius CD and center A
+<Circle Tool>Use the non-collapsing compass to construct the circle with radius EF and center B, intersecting circle A at G and H
+<Line Tool>Construct line AG
+<Line Tool>Construct line BG","['Circle Tool', 'Circle Tool', 'Line Tool', 'Line Tool']","[['AB', 'CD', 'EF'], ['A'], ['B', 'G', 'H'], ['AG'], ['BG']]","['AB', 'CD', 'EF']"
+62,Zeta,https://euclidea.fandom.com/wiki/Parallelogram,"Description: Construct a parallelogram with the given side and the midpoint of the opposite side in the given point.Given the segment AB and the point C.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a parallelogram with the given side and the midpoint of the opposite side in the given point.Given the segment AB and the point C.
+Solution: ","Construct the perpendicular bisector of AB, intersecting AB at D
+Use the non-collapsing compass to construct the circle with radius AD and center C
+Construct the parallel to AB through C, intersecting circle C at E and F
+Construct line AE
+Construct line BF
+Rationale: None","<Perpendicular Tool>Construct the perpendicular bisector of AB, intersecting AB at D
+<Circle Tool>Use the non-collapsing compass to construct the circle with radius AD and center C
+<Parallel Tool>Construct the parallel to AB through C, intersecting circle C at E and F
+<Line Tool>Construct line AE
+<Line Tool>Construct line BF","['Perpendicular Tool', 'Circle Tool', 'Parallel Tool', 'Line Tool', 'Line Tool']","[['AB', 'C'], ['D'], ['AD'], ['E', 'F'], ['AE'], ['BF']]","['AB', 'C']"
+63,Zeta,https://euclidea.fandom.com/wiki/Nine_Point_Circle,"Description: Construct a circle that passes through the midpoints of sides of the given acute triangle.Given the triangle ABC.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a circle that passes through the midpoints of sides of the given acute triangle.Given the triangle ABC.
+Solution: ","Construct the perpendicular to AB through C, intersecting AB at D
+Construct the perpendicular to BC through A, intersecting BC at E
+Construct the perpendicular bisector of DE, intersecting AC at F
+Construct the perpendicular bisector of DF, intersecting the perpendicular bisector of DE at G
+Construct the circle with center G and radius DG
+Rationale: None","<Perpendicular Tool>Construct the perpendicular to AB through C, intersecting AB at D
+<Perpendicular Tool>Construct the perpendicular to BC through A, intersecting BC at E
+<Perpendicular Tool>Construct the perpendicular bisector of DE, intersecting AC at F
+<Perpendicular Tool>Construct the perpendicular bisector of DF, intersecting the perpendicular bisector of DE at G
+<Circle Tool>Construct the circle with center G and radius DG","['Perpendicular Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Circle Tool']","[['ABC'], ['AB', 'C', 'D'], ['E', 'A', 'BC'], ['AC', 'DE', 'F'], ['DF', 'G'], ['DG']]",['ABC']
+64,Zeta,https://euclidea.fandom.com/wiki/Symmetry_of_Four_Lines,"Description: Three lines are intersected in a point. Construct a line so that the set of all 4 lines is mirror symmetric.Let O be the intersection of the three lines.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Three lines are intersected in a point. Construct a line so that the set of all 4 lines is mirror symmetric.Let O be the intersection of the three lines.
+Solution: ","Construct a circle with center O and an arbitrary radius, intersecting the lines at six points; let A, B and C be a set of three consecutive points
+Use the non-collapsing compass to construct the circle with radius AB and center C, intersecting circle O at D and E
+Construct line OD
+Rationale: None","<Circle Tool>Construct a circle with center O and an arbitrary radius, intersecting the lines at six points; let A, B and C be a set of three consecutive points
+<Circle Tool>Use the non-collapsing compass to construct the circle with radius AB and center C, intersecting circle O at D and E
+<Line Tool>Construct line OD","['Circle Tool', 'Circle Tool', 'Line Tool']","[['O'], ['B', 'C', 'A'], ['E', 'AB', 'D'], ['OD']]",['O']
+65,Zeta,https://euclidea.fandom.com/wiki/Parallelogram_by_Three_Midpoints,"Description: Construct a parallelogram given three of the midpoints.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a parallelogram given three of the midpoints.
+Solution: ","Use the non-collapsing compass to construct the circle with radius AC and center B
+Use the non-collapsing compass to construct the circle with radius BC and center A, intersecting circle B at D and E, with D on the opposite side of C from AB
+Construct line CD
+Construct the parallel to CD through A
+Construct the parallel to CD through B
+Construct line CE, intersecting circle A at F and circle B at G
+Construct the parallel to CE through D
+Rationale: None","<Circle Tool>Use the non-collapsing compass to construct the circle with radius AC and center B
+<Circle Tool>Use the non-collapsing compass to construct the circle with radius BC and center A, intersecting circle B at D and E, with D on the opposite side of C from AB
+<Line Tool>Construct line CD
+<Parallel Tool>Construct the parallel to CD through A
+<Parallel Tool>Construct the parallel to CD through B
+<Line Tool>Construct line CE, intersecting circle A at F and circle B at G
+<Parallel Tool>Construct the parallel to CE through D","['Circle Tool', 'Circle Tool', 'Line Tool', 'Parallel Tool', 'Parallel Tool', 'Line Tool', 'Parallel Tool']","[[], ['AC', 'B'], ['D', 'E', 'AB', 'C', 'A', 'BC'], ['CD'], [], [], ['CE', 'G', 'F'], []]",[]
+66,Eta,https://euclidea.fandom.com/wiki/Sum_of_Areas_of_Squares,"Description: Construct a square whose area equals the sum of the areas of the two given squares and all three have the common angle.Let O be the common vertex of the squares, A the second vertex of one square on one line and B the second vertex of the other square on the other line.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a square whose area equals the sum of the areas of the two given squares and all three have the common angle.Let O be the common vertex of the squares, A the second vertex of one square on one line and B the second vertex of the other square on the other line.
+Solution: ","Use the non-collapsing compass to construct the circle with radius AB and center O, intersecting one line at C and the other line at D
+Construct the perpendicular to OC from C
+Construct the perpendicular to OD from D
+Rationale: None","<Circle Tool>Use the non-collapsing compass to construct the circle with radius AB and center O, intersecting one line at C and the other line at D
+<Perpendicular Tool>Construct the perpendicular to OC from C
+<Perpendicular Tool>Construct the perpendicular to OD from D","['Circle Tool', 'Perpendicular Tool', 'Perpendicular Tool']","[['O', 'A', 'B'], ['AB', 'C', 'D'], ['OC'], ['OD']]","['O', 'A', 'B']"
+67,Eta,https://euclidea.fandom.com/wiki/Annulus,"Description: Construct a circle that is concentric with the given one and divides it into 2 parts of equal area.Let O be the center.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a circle that is concentric with the given one and divides it into 2 parts of equal area.Let O be the center.
+Solution: ","Construct an arbitrary line through O, intersecting the circle at A
+Construct the perpendicular bisector of OA, intersecting at B
+Construct the circle with center B and radius OB, intersecting the bisector at C
+Construct the circle with center O and radius OC
+Rationale: None","<Line Tool>Construct an arbitrary line through O, intersecting the circle at A
+<Perpendicular Tool>Construct the perpendicular bisector of OA, intersecting at B
+<Circle Tool>Construct the circle with center B and radius OB, intersecting the bisector at C
+<Circle Tool>Construct the circle with center O and radius OC","['Line Tool', 'Perpendicular Tool', 'Circle Tool', 'Circle Tool']","[['O'], ['A'], ['B', 'OA'], ['OB', 'C'], ['OC']]",['O']
+68,Eta,https://euclidea.fandom.com/wiki/Angle_of_75%C2%B0,"Description: Construct an angle of 75° with the given side.Let A be the initial point of the given ray.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct an angle of 75° with the given side.Let A be the initial point of the given ray.
+Solution: ","Construct a circle with an arbitrary center B not on the ray and radius AB, so that it intersects the ray at C and AC<AB
+Construct the circle with center C and radius BC, intersecting circle B at D
+Construct the angle bisector of  angle CAD
+Rationale: None","<Circle Tool>Construct a circle with an arbitrary center B not on the ray and radius AB, so that it intersects the ray at C and AC<AB
+<Circle Tool>Construct the circle with center C and radius BC, intersecting circle B at D
+<Angle Bisector Tool>Construct the angle bisector of  angle CAD","['Circle Tool', 'Circle Tool', 'Angle Bisector Tool']","[['A'], ['B', 'AB', 'C', 'AC'], ['BC', 'D'], ['CAD']]",['A']
+69,Eta,https://euclidea.fandom.com/wiki/Line_Equidistant_from_Three_Points,"Description: Construct a line that is at equal distance from the given three points.Let A, B and C be the given points.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a line that is at equal distance from the given three points.Let A, B and C be the given points.
+Solution: ","Construct line AB
+Construct the perpendicular to AB through C, intersecting AB at D
+Construct the perpendicular bisector of CD
+Rationale: None","<Line Tool>Construct line AB
+<Perpendicular Tool>Construct the perpendicular to AB through C, intersecting AB at D
+<Perpendicular Tool>Construct the perpendicular bisector of CD","['Line Tool', 'Perpendicular Tool', 'Perpendicular Tool']","[['A', 'B', 'C'], ['AB'], ['D'], ['CD']]","['A', 'B', 'C']"
+70,Eta,https://euclidea.fandom.com/wiki/Heron%27s_Problem,"Description: Construct a point C on the given line and segments AC and BC such that the sum of their length is minimal.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a point C on the given line and segments AC and BC such that the sum of their length is minimal.
+Solution: ","Construct a circle with an arbitrary center D on the line and radius AD
+Construct a circle with an arbitrary center E on the line and radius AE, intersecting circle D at F
+Construct line BF, intersecting the line at C
+Construct line AC
+Rationale: Consider the given line as a mirror.  Once A is reflected across the line to F, the shortest distance is then a straight line which hits the mirror at C.
+","<Line Tool>Construct a circle with an arbitrary center D on the line and radius AD
+<Line Tool>Construct a circle with an arbitrary center E on the line and radius AE, intersecting circle D at F
+<Line Tool>Construct line BF, intersecting the line at C
+<Line Tool>Construct line AC","['Line Tool', 'Line Tool', 'Line Tool', 'Line Tool']","[['C', 'AC', 'BC'], ['D', 'AD'], ['E', 'AE', 'F'], ['BF'], []]","['C', 'AC', 'BC']"
+71,Eta,https://euclidea.fandom.com/wiki/Circumscribed_Circle,"Description: Construct the circumcircle of the triangle.Given the triangle ABC
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct the circumcircle of the triangle.Given the triangle ABC
+Solution: ","Construct the perpendicular bisector of AB
+Construct the perpendicular bisector of BC, intersecting the perpendicular bisector of AB at D
+Construct the circle with center D and radius AD
+Rationale: None","<Perpendicular Tool>Construct the perpendicular bisector of AB
+<Perpendicular Tool>Construct the perpendicular bisector of BC, intersecting the perpendicular bisector of AB at D
+<Circle Tool>Construct the circle with center D and radius AD","['Perpendicular Tool', 'Perpendicular Tool', 'Circle Tool']","[['ABC'], ['AB'], ['BC', 'D'], ['AD']]",['ABC']
+72,Eta,https://euclidea.fandom.com/wiki/Inscribed_Circle,"Description: Construct the incircle of the triangle.Given the triangle ABC
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct the incircle of the triangle.Given the triangle ABC
+Solution: ","Construct the angle bisector of  angle CAB
+Construct the angle bisector of  angle ABC, intersecting the angle bisector of  angle CAB at D
+Construct the perpendicular to AB through D, intersecting AB at E
+Construct the circle with center D and radius DE
+Rationale: First let's review steps 1-2. Let's construct these two circles and 2 angle bisectors for clarity (we don't need them in solution, only for explanation). We want to prove that BK = EK.
+","<Angle Bisector Tool>Construct the angle bisector of  angle CAB
+<Angle Bisector Tool>Construct the angle bisector of  angle ABC, intersecting the angle bisector of  angle CAB at D
+<Perpendicular Tool>Construct the perpendicular to AB through D, intersecting AB at E
+<Circle Tool>Construct the circle with center D and radius DE","['Angle Bisector Tool', 'Angle Bisector Tool', 'Perpendicular Tool', 'Circle Tool']","[['ABC'], ['CAB'], ['D'], ['AB', 'E'], ['DE']]",['ABC']
+73,Eta,https://euclidea.fandom.com/wiki/Circle_Tangent_to_Three_Lines,"Description: Construct a circle that is tangent to the three given lines. Two of the lines are parallel.Given the intersections of the lines A and B.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a circle that is tangent to the three given lines. Two of the lines are parallel.Given the intersections of the lines A and B.
+Solution: ","Construct the angle bisector of  angle CAB, with C an arbitrary point on one of the parallel lines.
+Construct the angle bisector of  angle ABD, with D an arbitrary point on the other parallel line and on the same side as C from the third given line, intersecting the angle bisector of  angle CAB at E
+Construct the perpendicular to AB through E, intersecting AB at F
+Construct the circle with center E and radius EF
+Rationale: None","<Angle Bisector Tool>Construct the angle bisector of  angle CAB, with C an arbitrary point on one of the parallel lines.
+<Angle Bisector Tool>Construct the angle bisector of  angle ABD, with D an arbitrary point on the other parallel line and on the same side as C from the third given line, intersecting the angle bisector of  angle CAB at E
+<Perpendicular Tool>Construct the perpendicular to AB through E, intersecting AB at F
+<Circle Tool>Construct the circle with center E and radius EF","['Angle Bisector Tool', 'Angle Bisector Tool', 'Perpendicular Tool', 'Circle Tool']","[['A', 'B'], ['C', 'CAB'], ['ABD', 'E', 'D'], ['AB', 'F'], ['EF']]","['A', 'B']"
+74,Eta,https://euclidea.fandom.com/wiki/Segment_by_Midpoint,"Description: Construct a segment with the ends on the sides of the angle such that the given point is its midpoint.Let A be the vertex of the angle and B the midpoint.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a segment with the ends on the sides of the angle such that the given point is its midpoint.Let A be the vertex of the angle and B the midpoint.
+Solution: ","Construct parallel of one ray through B, intersecting the other ray at C
+Construct the circle with center C and radius AC, intersecting AC at D
+Construct line BD
+Rationale: Creating the parallel line sets up two 1:2 similar triangles
+","<Parallel Tool>Construct parallel of one ray through B, intersecting the other ray at C
+<Circle Tool>Construct the circle with center C and radius AC, intersecting AC at D
+<Line Tool>Construct line BD","['Parallel Tool', 'Circle Tool', 'Line Tool']","[['A', 'B'], ['C'], ['AC', 'D'], ['BD']]","['A', 'B']"
+75,Eta,https://euclidea.fandom.com/wiki/Angle_Isosceles,"Description: Construct a line through the given point such that it cuts off equal segments on the sides of the angle.Let A be the vertex of the angle and B the point.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a line through the given point such that it cuts off equal segments on the sides of the angle.Let A be the vertex of the angle and B the point.
+Solution: ","Construct the angle bisector A1 of the given angle
+Construct the perpendicular to A1 through B
+Rationale: None","<Angle Bisector Tool>Construct the angle bisector A1 of the given angle
+<Perpendicular Tool>Construct the perpendicular to A1 through B","['Angle Bisector Tool', 'Perpendicular Tool']","[['A', 'B'], [], []]","['A', 'B']"
+76,Eta,https://euclidea.fandom.com/wiki/Excircle,"Description: Construct the excircle of the triangle formed by the three given lines.Let A, B and C be the intersections of the lines.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct the excircle of the triangle formed by the three given lines.Let A, B and C be the intersections of the lines.
+Solution: ","Construct the angle bisector A1 of  angle DAB, with D an arbitrary point on the line that intersects AB at A
+Construct the angle bisector A2 of  angle EBA, with E an arbitrary point on the line that intersects AB at B, intersecting A1 at F
+Construct the perpendicular to AB through F, intersecting AB at G
+Construct the circle with center F and radius FG
+Rationale: None","<Angle Bisector Tool>Construct the angle bisector A1 of  angle DAB, with D an arbitrary point on the line that intersects AB at A
+<Angle Bisector Tool>Construct the angle bisector A2 of  angle EBA, with E an arbitrary point on the line that intersects AB at B, intersecting A1 at F
+<Perpendicular Tool>Construct the perpendicular to AB through F, intersecting AB at G
+<Circle Tool>Construct the circle with center F and radius FG","['Angle Bisector Tool', 'Angle Bisector Tool', 'Perpendicular Tool', 'Circle Tool']","[['A', 'B', 'C'], ['DAB', 'AB', 'D'], ['E', 'EBA', 'F'], ['G'], ['FG']]","['A', 'B', 'C']"
+77,Theta,https://euclidea.fandom.com/wiki/Perimeter_Bisector,"Description: Construct a straight line through a vertex of the triangle that divides its perimeter in half.Let A, B, and C be the vertices of the triangle
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a straight line through a vertex of the triangle that divides its perimeter in half.Let A, B, and C be the vertices of the triangle
+Solution: ","Construct a circle with center A and radius BC intersecting line AC at D
+Construct a circle with center C and radius AB intersecting line AC at E
+Construct the perpendicular bisector of DE intersecting line AC at F
+Construct the line BF
+Rationale: None","<Line Tool>Construct a circle with center A and radius BC intersecting line AC at D
+<Line Tool>Construct a circle with center C and radius AB intersecting line AC at E
+<Perpendicular Tool>Construct the perpendicular bisector of DE intersecting line AC at F
+<Line Tool>Construct the line BF","['Line Tool', 'Line Tool', 'Perpendicular Tool', 'Line Tool']","[['A', 'B', 'C'], ['AC', 'BC', 'D'], ['AB', 'E'], ['DE', 'F'], ['BF']]","['A', 'B', 'C']"
+78,Theta,https://euclidea.fandom.com/wiki/Angle_54%C2%B0_Trisection,"Description: Construct two rays that divide the given angle of 54° into three equal parts.Let A be the vertex.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct two rays that divide the given angle of 54° into three equal parts.Let A be the vertex.
+Solution: ","Construct a circle with center B on either line and radius AB. Circle B intersects with line AB at point C, and the other line at point D.
+Construct a circle with center D and radius AD. Circle D intersects with circle B at point E.
+Draw line AE, the first angle trisector.
+Bisect angle DAE, the second angle trisector.
+Rationale: As mentioned in the FAQ, trisection of an angle is not possible in general case, so you need to use that 54/3 = 18. You can also note that 90-54 = 36 = 2*18 and so on.
+","<Line Tool>Construct a circle with center B on either line and radius AB. Circle B intersects with line AB at point C, and the other line at point D.
+<Circle Tool>Construct a circle with center D and radius AD. Circle D intersects with circle B at point E.
+<Line Tool>Draw line AE, the first angle trisector.
+<Angle Bisector Tool>Bisect angle DAE, the second angle trisector.","['Line Tool', 'Circle Tool', 'Line Tool', 'Angle Bisector Tool']","[['A'], ['B', 'AB', 'C', 'D'], ['E', 'AD'], ['AE'], ['DAE']]",['A']
+79,Theta,https://euclidea.fandom.com/wiki/Interior_Angles,"Description: Construct a line through the point that crosses the two lines so that the interior angles are equal.Let A be the point of intersection between the two lines.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a line through the point that crosses the two lines so that the interior angles are equal.Let A be the point of intersection between the two lines.
+Solution: "," Let B be an arbitrary point on one of the lines, and C an arbitrary point on the other. Let O be the given point.
+Bisect the angle BAC. The new line contains an arbitrary point D.
+Construct the line perpendicular to AD through O.
+Rationale: None","<Point Tool> Let B be an arbitrary point on one of the lines, and C an arbitrary point on the other. Let O be the given point.
+<Angle Bisector Tool>Bisect the angle BAC. The new line contains an arbitrary point D.
+<Perpendicular Tool>Construct the line perpendicular to AD through O.","['Point Tool', 'Angle Bisector Tool', 'Perpendicular Tool']","[['A'], ['B', 'C', 'O'], ['D', 'BAC'], ['AD']]",['A']
+80,Theta,https://euclidea.fandom.com/wiki/Regular_Octagon,"Description: Construct a regular octagon with the given side.Let point A and point B be the two given points.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a regular octagon with the given side.Let point A and point B be the two given points.
+Solution: ","Construct the perpendicular to line AB through point A. Let point C be an arbitrary point on this new line (C below AB to match orientation of explore mode).
+Construct the angle bisector of BAC. Let point D be an arbitrary point on this line.
+Construct the perpendicular to line AD through point B. Let point E be an arbitrary point on this line on the opposite side of point B from point C.
+Construct the angle bisector of ABE. This line intersects with line AD at point F and line AC at point G.
+Construct the perpendicular to line AB through point F.
+Construct the perpendicular to line AG through point G. This line intersects with line BE at point H.
+Construct the perpendicular bisector of point B and point H. This line intersects with line BG at point I.
+Construct the perpendicular of line AB through point I.
+Construct the perpendicular of line AD through point G (total 29E).
+Rationale: For the 9L solution, the emphasis is on producing the remaining 7 sides with as few extraneous moves as possible.  In a regular octagon, all internal angles are 135°, and external angles are 45°.  Like all regular polygons with an even number of sides, any interior angle bisector or perpendicular from a vertex intersects with another vertex.  Thus, the first two moves produce a 45° angle as fast as possible, and while the first four moves provide only two sides, they also serve to locate point G as one of the other vertices, as well as external point F and later I that can be used as the apex of an isosceles triangle to get other sides.  Every remaining move then adds another side, favoring tools with 3E cost (several of the moves could be replaced by a use of the Parallel tool, but at a cost of 4E).
+","<Perpendicular Tool>Construct the perpendicular to line AB through point A. Let point C be an arbitrary point on this new line (C below AB to match orientation of explore mode).
+<Line Tool>Construct the angle bisector of BAC. Let point D be an arbitrary point on this line.
+<Perpendicular Tool>Construct the perpendicular to line AD through point B. Let point E be an arbitrary point on this line on the opposite side of point B from point C.
+<Line Tool>Construct the angle bisector of ABE. This line intersects with line AD at point F and line AC at point G.
+<Perpendicular Tool>Construct the perpendicular to line AB through point F.
+<Perpendicular Tool>Construct the perpendicular to line AG through point G. This line intersects with line BE at point H.
+<Perpendicular Tool>Construct the perpendicular bisector of point B and point H. This line intersects with line BG at point I.
+<Perpendicular Tool>Construct the perpendicular of line AB through point I.
+<Perpendicular Tool>Construct the perpendicular of line AD through point G (total 29E).","['Perpendicular Tool', 'Line Tool', 'Perpendicular Tool', 'Line Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Perpendicular Tool']","[['A', 'B'], ['AB', 'C'], ['D', 'BAC'], ['E', 'AD'], ['AC', 'ABE', 'G', 'F'], [], ['BE', 'AG', 'H'], ['I', 'BG'], [], []]","['A', 'B']"
+81,Theta,https://euclidea.fandom.com/wiki/Triangle_Cleaver,"Description: Construct a line through the midpoint of a side of the triangle that bisects its perimeter.Let A, B, and C be the vertices of the triangle
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a line through the midpoint of a side of the triangle that bisects its perimeter.Let A, B, and C be the vertices of the triangle
+Solution: ","Construct the perpendicular bisector of AC intersecting line AC at midpoint D
+Construct the line BE that bisects the angle ABC
+Draw the line parallel to BE that intersects D
+Rationale: None","<Perpendicular Tool>Construct the perpendicular bisector of AC intersecting line AC at midpoint D
+<Line Tool>Construct the line BE that bisects the angle ABC
+<Line Tool>Draw the line parallel to BE that intersects D","['Perpendicular Tool', 'Line Tool', 'Line Tool']","[['A', 'B', 'C'], ['AC', 'D'], ['BE', 'ABC'], []]","['A', 'B', 'C']"
+82,Theta,https://euclidea.fandom.com/wiki/Torricelli_Point,"Description: Construct a point from which each side subtends an angle of 120 or 60.Let A, B, and C be the vertices of the triangle.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a point from which each side subtends an angle of 120 or 60.Let A, B, and C be the vertices of the triangle.
+Solution: ","Construct circle A with center A and radius AB.
+Construct circle B with center B and radius BA, intersecting circle A at D.
+Construct line CD, intersecting circle B at E.
+Construct line A as the perpendicular bisector of AE, intersecting line CD at F
+Select point F using the point tool.
+Rationale: I could not follow the steps above. I looked it up, and found this page (https://demonstrations.wolfram.com/TheTorricelliPoint/). Apparently, if you construct equilateral triangles based on each edge, each line going from an outer vertex to the opposite vertex of the original triangle will go through this point.
+","<Circle Tool>Construct circle A with center A and radius AB.
+<Circle Tool>Construct circle B with center B and radius BA, intersecting circle A at D.
+<Line Tool>Construct line CD, intersecting circle B at E.
+<Perpendicular Tool>Construct line A as the perpendicular bisector of AE, intersecting line CD at F
+<Point Tool>Select point F using the point tool.","['Circle Tool', 'Circle Tool', 'Line Tool', 'Perpendicular Tool', 'Point Tool']","[['A', 'B', 'C'], ['AB'], ['D', 'BA'], ['CD', 'E'], ['AE', 'F'], []]","['A', 'B', 'C']"
+83,Theta,https://euclidea.fandom.com/wiki/Circle_Equidistant_from_Four_Points,"Description: Construct a circle equidistant from the given four points so that exactly two of them lie inside the circle.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a circle equidistant from the given four points so that exactly two of them lie inside the circle.
+Solution: ","Construct the perpendicular bisector of AB
+Construct the perpendicular bisector of CD intersecting the previous line at E
+Construct the line AE
+Construct a circle with center E and radius EC, intersecting AE at F
+Construct the perpendicular bisector of AF, intersecting AE at G
+Construct a circle with center E and radius EG
+Rationale: None","<Perpendicular Tool>Construct the perpendicular bisector of AB
+<Perpendicular Tool>Construct the perpendicular bisector of CD intersecting the previous line at E
+<Line Tool>Construct the line AE
+<Circle Tool>Construct a circle with center E and radius EC, intersecting AE at F
+<Perpendicular Tool>Construct the perpendicular bisector of AF, intersecting AE at G
+<Circle Tool>Construct a circle with center E and radius EG","['Perpendicular Tool', 'Perpendicular Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Tool', 'Circle Tool']","[[], ['AB'], ['CD', 'E'], ['AE'], ['EC', 'F'], ['G', 'AF'], ['EG']]",[]
+84,Iota,https://euclidea.fandom.com/wiki/Minimum_Perimeter_-_1,"Description: Construct a triangle whose perimeter is the minimum possible whose vertices lie on the two sides of the angle and the third vertex is in the point A.Let O be the vertex of the angle and A the given point. Let B, C be abitary points on each ray, such that AB is bigger than AO and  AC is bigger than AO.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a triangle whose perimeter is the minimum possible whose vertices lie on the two sides of the angle and the third vertex is in the point A.Let O be the vertex of the angle and A the given point. Let B, C be abitary points on each ray, such that AB is bigger than AO and  AC is bigger than AO.
+Solution: ","Construct circle O with center O and radius OA.
+Construct circle B with center B and radius BA, intersecting circle O at F.
+Construct circle B with center C and radius CA, intersecting circle O at G.
+Construct line FG, intersecting line OB at H, intersecting line OC at I.
+Construct line AH.
+Construct line AI.
+Rationale: For any points 
+
+
+
+P
+
+
+{\displaystyle P}
+
+ on 
+
+
+
+O
+B
+
+
+{\displaystyle OB}
+
+ and 
+
+
+
+Q
+
+
+{\displaystyle Q}
+
+ on 
+
+
+
+O
+C
+
+
+{\displaystyle OC}
+
+, we know:
+","<Circle Tool>Construct circle O with center O and radius OA.
+<Circle Tool>Construct circle B with center B and radius BA, intersecting circle O at F.
+<Circle Tool>Construct circle B with center C and radius CA, intersecting circle O at G.
+<Line Tool>Construct line FG, intersecting line OB at H, intersecting line OC at I.
+<Line Tool>Construct line AH.
+<Line Tool>Construct line AI.","['Circle Tool', 'Circle Tool', 'Circle Tool', 'Line Tool', 'Line Tool', 'Line Tool']","[['A', 'O', 'A', 'B', 'C', 'AB', 'AO', 'AC', 'AO'], ['OA'], ['BA', 'F'], ['G', 'CA'], ['I', 'OC', 'H', 'OB', 'FG'], ['AH'], ['AI']]","['A', 'O', 'A', 'B', 'C', 'AB', 'AO', 'AC', 'AO']"
+85,Iota,https://euclidea.fandom.com/wiki/Third_Proportional,"Description: Construct a point D on the ray such that the segment AD is the third proportional to the given line segments.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a point D on the ray such that the segment AD is the third proportional to the given line segments.
+Solution: ","Construct circle A with center A and radius AB.
+Construct circle C with center C and radius CA, intersecting circle A at E.
+Construct circle E with center E and radius EA, intersecting circle O at D.
+Rationale: We have 
+
+
+
+△
+A
+E
+D
+∼
+△
+A
+C
+E
+
+
+{\displaystyle \triangle AED\sim \triangle ACE}
+
+, then 
+
+
+
+A
+
+E
+
+2
+
+
+=
+A
+D
+⋅
+A
+C
+
+
+{\displaystyle AE^{2}=AD\cdot AC}
+
+, or 
+
+
+
+A
+
+B
+
+2
+
+
+=
+A
+D
+⋅
+A
+C
+
+
+{\displaystyle AB^{2}=AD\cdot AC}
+
+, or 
+
+
+
+
+
+A
+C
+
+
+A
+B
+
+
+=
+
+
+A
+B
+
+
+A
+D
+
+
+
+
+{\displaystyle \frac{AC}{AB}=\frac{AB}{AD}}
+
+.
+","<Circle Tool>Construct circle A with center A and radius AB.
+<Circle Tool>Construct circle C with center C and radius CA, intersecting circle A at E.
+<Circle Tool>Construct circle E with center E and radius EA, intersecting circle O at D.","['Circle Tool', 'Circle Tool', 'Circle Tool']","[['D', 'AD'], ['AB', 'A'], ['E', 'CA', 'C'], ['O', 'EA']]","['D', 'AD']"
+86,Iota,https://euclidea.fandom.com/wiki/Harmonic_Mean_of_Trapezoid_Bases,"Description: Join the legs of the trapezoid with a segment that is parallel to the bases and whose length is equal to the harmonic mean of their length.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Join the legs of the trapezoid with a segment that is parallel to the bases and whose length is equal to the harmonic mean of their length.
+Solution: ","Construct line AC.
+Construct line BD, intersecting line AC at E.
+Construct line parallel to AB through E.
+Rationale: EG intersects BC,AD at H,I.  By Thalès theorem we have 
+
+
+
+
+
+E
+H
+
+a
+
+=
+
+
+C
+E
+
+
+C
+A
+
+
+=
+
+
+B
+E
+
+
+B
+D
+
+
+=
+
+
+E
+I
+
+a
+
+
+
+{\displaystyle \frac{EH}{a}=\frac{CE}{CA}=\frac{BE}{BD}=\frac{EI}{a}}
+
+, so 
+
+
+
+E
+H
+=
+E
+I
+=
+
+c
+2
+
+
+
+{\displaystyle EH=EI=\frac{c}{2}}
+
+, where 
+
+
+
+H
+I
+=
+c
+
+
+{\displaystyle HI=c}
+
+.
+","<Line Tool>Construct line AC.
+<Line Tool>Construct line BD, intersecting line AC at E.
+<Line Tool>Construct line parallel to AB through E.","['Line Tool', 'Line Tool', 'Line Tool']","[[], ['AC'], ['E', 'BD'], ['AB']]",[]
+87,Iota,https://euclidea.fandom.com/wiki/Drop_a_Perpendicular*,"Description: Drop a perpendicular from the point to the line passing through the center of the circle using only a straightedge.Let O be the center of the circle, A be the given point, and B and C be the intersections of the circle and line.
+Tool List: ['Point Tool', 'Line Tool', 'Intersect Tool']
+Solution: ","Description: Drop a perpendicular from the point to the line passing through the center of the circle using only a straightedge.Let O be the center of the circle, A be the given point, and B and C be the intersections of the circle and line.
+Solution: ","Construct line AB, intersecting the circle at D.
+Construct line CD.
+Construct line AC, intersecting the circle at E.
+Construct line BE, intersecting CD at F.
+Construct line AF.
+Rationale: Triangle BCD is inscribed in a circle of diameter BC, so 
+
+
+
+D
+C
+⊥
+D
+B
+
+
+{\displaystyle DC \perp DB}
+
+, or 
+
+
+
+D
+C
+⊥
+A
+B
+
+
+{\displaystyle DC \perp AB}
+
+. Hence DC is an altitude of triangle ABC.
+","<Line Tool>Construct line AB, intersecting the circle at D.
+<Line Tool>Construct line CD.
+<Line Tool>Construct line AC, intersecting the circle at E.
+<Line Tool>Construct line BE, intersecting CD at F.
+<Line Tool>Construct line AF.","['Line Tool', 'Line Tool', 'Line Tool', 'Line Tool', 'Line Tool']","[['O', 'A', 'B', 'C'], ['AB', 'D'], ['CD'], ['AC', 'E'], ['BE', 'F'], ['AF']]","['O', 'A', 'B', 'C']"
+88,Iota,https://euclidea.fandom.com/wiki/Midpoint*,"Description: Construct the midpoint of the segment using only a straightedge. To help you, a line parallel to the segment is given.Given the line AB.
+Tool List: ['Point Tool', 'Line Tool', 'Intersect Tool']
+Solution: ","Description: Construct the midpoint of the segment using only a straightedge. To help you, a line parallel to the segment is given.Given the line AB.
+Solution: ","Construct a line connecting A with an arbitrary point C on the line.
+Construct a line connecting B with another arbitrary point D on the line that intersects AC at E.
+Construct line AD.
+Construct line BC, intersecting AD at F.
+Construct line EF, intersecting AB at G.
+Point at G.
+Rationale: None","<Line Tool>Construct a line connecting A with an arbitrary point C on the line.
+<Line Tool>Construct a line connecting B with another arbitrary point D on the line that intersects AC at E.
+<Line Tool>Construct line AD.
+<Line Tool>Construct line BC, intersecting AD at F.
+<Line Tool>Construct line EF, intersecting AB at G.
+<Point Tool>Point at G.","['Line Tool', 'Line Tool', 'Line Tool', 'Line Tool', 'Line Tool', 'Point Tool']","[['AB'], ['C', 'A'], ['B', 'E', 'AC', 'D'], ['AD'], ['BC', 'F'], ['G', 'EF'], []]",['AB']
+89,Iota,https://euclidea.fandom.com/wiki/Trisection_by_Trapezoid_Diagonals,"Description: 3L 5E 2V
+Tool List: ['Line Tool']
+Solution: ","Description: 3L 5E 2V
+Solution: ","Construct line AF, intersecting BD at G.
+Construct the line perpendicular to the bisector through G.
+Rationale: None","<Line Tool>Construct line AF, intersecting BD at G.
+<Line Tool>Construct the line perpendicular to the bisector through G.","['Line Tool', 'Line Tool']","[[], ['G', 'BD', 'AF'], []]",[]
+90,Iota,https://euclidea.fandom.com/wiki/Minimum_Perimeter_-_2,"Description: Inscribe a triangle into the given one whose perimeter is the minimum possible.Let A, B, and C be the vertices of the triangle.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Inscribe a triangle into the given one whose perimeter is the minimum possible.Let A, B, and C be the vertices of the triangle.
+Solution: ","Construct the line perpendicular to AB through C, intersecting AB at D.
+Construct the line perpendicular to AC through B, intersecting AC at E.
+Construct the line perpendicular to BC through A, intersecting BC at F.
+Construct line DE.
+Construct line DF.
+Construct line EF.
+Rationale: None","<Perpendicular Tool>Construct the line perpendicular to AB through C, intersecting AB at D.
+<Perpendicular Tool>Construct the line perpendicular to AC through B, intersecting AC at E.
+<Perpendicular Tool>Construct the line perpendicular to BC through A, intersecting BC at F.
+<Line Tool>Construct line DE.
+<Line Tool>Construct line DF.
+<Line Tool>Construct line EF.","['Perpendicular Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Line Tool', 'Line Tool', 'Line Tool']","[['A', 'B', 'C'], ['AB', 'D'], ['AC', 'E'], ['BC', 'F'], ['DE'], ['DF'], ['EF']]","['A', 'B', 'C']"
+91,Iota,https://euclidea.fandom.com/wiki/Harmonic_Mean_of_Segments,"Description: Construct a point on the given ray to get a segment with length equal to the harmonic mean of the two adjacent segments.Given line AB, let C be the intersection of AB and the other line.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a point on the given ray to get a segment with length equal to the harmonic mean of the two adjacent segments.Given line AB, let C be the intersection of AB and the other line.
+Solution: ","Construct circle C with radius AC, intersecting line C at D and AB at E.
+Construct circle D with radius DE.
+Construct line DE, intersecting circle D at F.
+Construct line BF, intersecting CD at G.
+Point at G.
+Rationale: None","<Circle Tool>Construct circle C with radius AC, intersecting line C at D and AB at E.
+<Circle Tool>Construct circle D with radius DE.
+<Line Tool>Construct line DE, intersecting circle D at F.
+<Line Tool>Construct line BF, intersecting CD at G.
+<Point Tool>Point at G.","['Circle Tool', 'Circle Tool', 'Line Tool', 'Line Tool', 'Point Tool']","[['AB', 'C', 'AB'], ['AC', 'E', 'D'], ['DE'], ['F'], ['CD', 'BF', 'G'], []]","['AB', 'C', 'AB']"
+92,Iota,https://euclidea.fandom.com/wiki/Triangle_by_Angle_and_Centroid,"Description: Construct a segment connecting the sides of the angle to get a triangle whose centroid is in the point O.Let O be the vertex of the angle and A the given point.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a segment connecting the sides of the angle to get a triangle whose centroid is in the point O.Let O be the vertex of the angle and A the given point.
+Solution: ","Construct the line parallel to one line through A, intersecting the other line at B.
+Construct the line parallel to BO through A, intersecting the other line at C.
+Construct circle A with radius AB, intersecting AB at D.
+Construct circle A with radius AC, intersecting AC at E.
+Construct line DE.
+Rationale: None","<Line Tool>Construct the line parallel to one line through A, intersecting the other line at B.
+<Line Tool>Construct the line parallel to BO through A, intersecting the other line at C.
+<Circle Tool>Construct circle A with radius AB, intersecting AB at D.
+<Circle Tool>Construct circle A with radius AC, intersecting AC at E.
+<Line Tool>Construct line DE.","['Line Tool', 'Line Tool', 'Circle Tool', 'Circle Tool', 'Line Tool']","[['O', 'O', 'A'], ['B'], ['C', 'BO'], ['AB', 'D'], ['AC', 'E'], ['DE']]","['O', 'O', 'A']"
+93,Iota,https://euclidea.fandom.com/wiki/Triangle_Mid-Segment,"Description: Construct a mid-segment of the given acute triangle.Let A, B, and C be the vertices of the triangle.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a mid-segment of the given acute triangle.Let A, B, and C be the vertices of the triangle.
+Solution: ","Construct the perpendicular bisector of AB, intersecting AB at D.
+Construct the line parallel to AC through D.
+Rationale: Every triangle has three mid-segments, each parallel to one of the legs.  The 2L solution is fairly straight-forward: once a midpoint is found for one of the three legs, creating a line parallel to either remaining leg through that point completes the construction.
+","<Perpendicular Tool>Construct the perpendicular bisector of AB, intersecting AB at D.
+<Line Tool>Construct the line parallel to AC through D.","['Perpendicular Tool', 'Line Tool']","[['A', 'B', 'C'], ['AB', 'D'], ['AC']]","['A', 'B', 'C']"
+94,Kappa,https://euclidea.fandom.com/wiki/Tangent_of_Circle,"Description: Construct a tangent to the circle from the external point.Let A be the center and B the given point.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a tangent to the circle from the external point.Let A be the center and B the given point.
+Solution: ","Construct line AB.
+Construct the perpendicular bisector of AB, intersecting AB at C.
+Construct circle C with radius AC, intersecting circle A at D.
+Construct line BD.
+Rationale: None","<Line Tool>Construct line AB.
+<Perpendicular Tool>Construct the perpendicular bisector of AB, intersecting AB at C.
+<Circle Tool>Construct circle C with radius AC, intersecting circle A at D.
+<Line Tool>Construct line BD.","['Line Tool', 'Perpendicular Tool', 'Circle Tool', 'Line Tool']","[['A', 'B'], ['AB'], ['C'], ['AC', 'D'], ['BD']]","['A', 'B']"
+95,Kappa,https://euclidea.fandom.com/wiki/Outer_Tangent,"Description: Construct an outer tangent between two circles.Let A and B be the centers of the circles.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct an outer tangent between two circles.Let A and B be the centers of the circles.
+Solution: ","Construct line AB, intersecting the two circles at C and D, with C and D between A and B.
+Construct the perpendicular bisector of AB, intersecting AB at E.
+Construct the perpendicular bisector of CD, intersecting AB at F.
+Construct circle E with radius AE, intersecting bisector F at G.
+Construct circle G with radius CG, intersecting circle A at H and circle B at I.
+Construct line HI.
+Rationale: None","<Line Tool>Construct line AB, intersecting the two circles at C and D, with C and D between A and B.
+<Perpendicular Tool>Construct the perpendicular bisector of AB, intersecting AB at E.
+<Perpendicular Tool>Construct the perpendicular bisector of CD, intersecting AB at F.
+<Circle Tool>Construct circle E with radius AE, intersecting bisector F at G.
+<Circle Tool>Construct circle G with radius CG, intersecting circle A at H and circle B at I.
+<Line Tool>Construct line HI.","['Line Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Circle Tool', 'Circle Tool', 'Line Tool']","[['A', 'B'], ['AB', 'C', 'D'], ['E'], ['CD', 'F'], ['G', 'AE'], ['I', 'CG', 'H'], ['HI']]","['A', 'B']"
+96,Kappa,https://euclidea.fandom.com/wiki/Inner_Tangent,"Description: Construct an inner tangent between two circles.Let A and B be the centers of the circles.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct an inner tangent between two circles.Let A and B be the centers of the circles.
+Solution: ","Construct line AB, intersecting circle A at C and circle B at D, with C on the other side of A from B and D between A and B.
+Construct the perpendicular bisector of AB, intersecting AB at E.
+Construct the perpendicular bisector of CD, intersecting AB at F.
+Construct circle E with radius AE, intersecting bisector F at G.
+Construct circle G with radius CG, intersecting circle A at H and circle B at I.
+Construct line HI.
+Rationale: None","<Line Tool>Construct line AB, intersecting circle A at C and circle B at D, with C on the other side of A from B and D between A and B.
+<Perpendicular Tool>Construct the perpendicular bisector of AB, intersecting AB at E.
+<Perpendicular Tool>Construct the perpendicular bisector of CD, intersecting AB at F.
+<Circle Tool>Construct circle E with radius AE, intersecting bisector F at G.
+<Circle Tool>Construct circle G with radius CG, intersecting circle A at H and circle B at I.
+<Line Tool>Construct line HI.","['Line Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Circle Tool', 'Circle Tool', 'Line Tool']","[['A', 'B'], ['AB', 'C', 'D'], ['E'], ['CD', 'F'], ['G', 'AE'], ['I', 'CG', 'H'], ['HI']]","['A', 'B']"
+97,Kappa,https://euclidea.fandom.com/wiki/Rotation_90%C2%B0,"Description: Rotate the line segment 90° counterclockwise about the given point.Given the segment AB and O the point.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Rotate the line segment 90° counterclockwise about the given point.Given the segment AB and O the point.
+Solution: ","Construct line AO.
+Construct circle O with radius AO.
+Construct the line perpendicular to AO through O, intersecting circle O at C.
+Construct circle O with radius BO.
+Construct the line perpendicular to AB through C, intersecting the latest circle at D.
+Point at D.
+Rationale: None","<Line Tool>Construct line AO.
+<Circle Tool>Construct circle O with radius AO.
+<Perpendicular Tool>Construct the line perpendicular to AO through O, intersecting circle O at C.
+<Circle Tool>Construct circle O with radius BO.
+<Perpendicular Tool>Construct the line perpendicular to AB through C, intersecting the latest circle at D.
+<Point Tool>Point at D.","['Line Tool', 'Circle Tool', 'Perpendicular Tool', 'Circle Tool', 'Perpendicular Tool', 'Point Tool']","[['AB', 'O'], ['AO'], [], ['C'], ['BO'], ['D'], []]","['AB', 'O']"
+98,Kappa,https://euclidea.fandom.com/wiki/Rotation_60%C2%B0,"Description: Rotate the line segment 60° clockwise about the given point.Given the segment AB and O the point.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Rotate the line segment 60° clockwise about the given point.Given the segment AB and O the point.
+Solution: ","Construct circle A with radius AO.
+Construct circle B with radius BO, intersecting circle A at C.
+Construct circle O with radius AO, intersecting circle A at D, with D being clockwise around O from A.
+Construct line CD, intersecting circle B at E.
+Point at E.
+Rationale: None","<Circle Tool>Construct circle A with radius AO.
+<Circle Tool>Construct circle B with radius BO, intersecting circle A at C.
+<Circle Tool>Construct circle O with radius AO, intersecting circle A at D, with D being clockwise around O from A.
+<Line Tool>Construct line CD, intersecting circle B at E.
+<Point Tool>Point at E.","['Circle Tool', 'Circle Tool', 'Circle Tool', 'Line Tool', 'Point Tool']","[['AB', 'O'], ['AO', 'A'], ['B', 'C', 'BO'], ['D'], ['CD', 'E'], []]","['AB', 'O']"
+99,Kappa,https://euclidea.fandom.com/wiki/Segment_Trisection,"Description: Construct two points that divide the segment into 3 equal parts.Given the segment AB.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct two points that divide the segment into 3 equal parts.Given the segment AB.
+Solution: ","Construct circle A with radius AB.
+Construct the perpendicular bisector of AB, intersecting AB at C and circle A at D.
+Construct the perpendicular bisector of AD, intersecting CD at E.
+Construct the line perpendicular to BE through E, intersecting AB at F.
+Construct circle C with radius CF, intersecting AB at G.
+Point at G.
+Rationale: None","<Circle Tool>Construct circle A with radius AB.
+<Perpendicular Tool>Construct the perpendicular bisector of AB, intersecting AB at C and circle A at D.
+<Perpendicular Tool>Construct the perpendicular bisector of AD, intersecting CD at E.
+<Perpendicular Tool>Construct the line perpendicular to BE through E, intersecting AB at F.
+<Circle Tool>Construct circle C with radius CF, intersecting AB at G.
+<Point Tool>Point at G.","['Circle Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Perpendicular Tool', 'Circle Tool', 'Point Tool']","[['AB'], ['A'], ['C', 'D'], ['CD', 'E', 'AD'], ['BE', 'F'], ['G', 'CF'], []]",['AB']
+100,Kappa,https://euclidea.fandom.com/wiki/Segment_Trisection*,"Description: Construct points that divide the segment into three equal parts using only a straightedge. To help you, a line parallel to the segment is given.Given the segment AB.
+Tool List: ['Point Tool', 'Line Tool', 'Intersect Tool']
+Solution: ","Description: Construct points that divide the segment into three equal parts using only a straightedge. To help you, a line parallel to the segment is given.Given the segment AB.
+Solution: ","Construct a line connecting A with an arbitrary point C on the line.
+Construct a line connecting B with another arbitrary point D on the line that intersects AC at E.
+Construct line AD.
+Construct line BC, intersecting AD at F.
+Construct line EF, intersecting CD at G.
+Construct line AG, intersecting BD at H.
+Construct line FH, intersecting AB at I and CD at J.
+Construct line EJ, intersecting AB at K.
+Point at I.
+Point at K.
+Rationale: None","<Line Tool>Construct a line connecting A with an arbitrary point C on the line.
+<Line Tool>Construct a line connecting B with another arbitrary point D on the line that intersects AC at E.
+<Line Tool>Construct line AD.
+<Line Tool>Construct line BC, intersecting AD at F.
+<Line Tool>Construct line EF, intersecting CD at G.
+<Line Tool>Construct line AG, intersecting BD at H.
+<Line Tool>Construct line FH, intersecting AB at I and CD at J.
+<Line Tool>Construct line EJ, intersecting AB at K.
+<Point Tool>Point at I.
+<Point Tool>Point at K.","['Line Tool', 'Line Tool', 'Line Tool', 'Line Tool', 'Line Tool', 'Line Tool', 'Line Tool', 'Line Tool', 'Point Tool', 'Point Tool']","[['AB'], ['C', 'A'], ['B', 'E', 'AC', 'D'], ['AD'], ['BC', 'F'], ['CD', 'G', 'EF'], ['AG', 'H', 'BD'], ['I', 'FH', 'J'], ['EJ', 'K'], [], []]",['AB']
+101,Kappa,https://euclidea.fandom.com/wiki/Chord_Trisection,"Description: Construct a chord of the larger circle through the given point that is divided into three equal segments by the smaller concentric circle.Given the center A and point on the larger circle B.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a chord of the larger circle through the given point that is divided into three equal segments by the smaller concentric circle.Given the center A and point on the larger circle B.
+Solution: ","Construct line AB, intersecting the smaller circle at C and D and the larger circle at E.
+Construct circle E with radius CD, intersecting the smaller circle at F.
+Construct line BF.
+Rationale: None","<Line Tool>Construct line AB, intersecting the smaller circle at C and D and the larger circle at E.
+<Circle Tool>Construct circle E with radius CD, intersecting the smaller circle at F.
+<Line Tool>Construct line BF.","['Line Tool', 'Circle Tool', 'Line Tool']","[['A', 'B'], ['AB', 'E', 'C', 'D'], ['CD', 'F'], ['BF']]","['A', 'B']"
+102,Kappa,https://euclidea.fandom.com/wiki/Three_Circles_-_1,"Description: Construct three circles with the given centers that are externally tangent each other.Given the points A, B, and C.
+Tool List: ['Line Tool']
+Solution: ","Description: Construct three circles with the given centers that are externally tangent each other.Given the points A, B, and C.
+Solution: ","Construct line AB.
+Rationale: None",<Line Tool>Construct line AB.,['Line Tool'],"[['A', 'B', 'C'], ['AB']]","['A', 'B', 'C']"
+103,Kappa,https://euclidea.fandom.com/wiki/Secant_Bisection,"Description: Construct a secant through the given point that is divided into two equal segments by the circle.Given the point A and centre B.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a secant through the given point that is divided into two equal segments by the circle.Given the point A and centre B.
+Solution: ","Construct the line AB intersecting the circle at C and D.
+Construct the circle with centre B and radius AB, intersecting line AB at E.
+Construct the circle with centre E and radius CD, intersecting circle B at F.
+Construct the line AF.
+Rationale: None","<Line Tool>Construct the line AB intersecting the circle at C and D.
+<Circle Tool>Construct the circle with centre B and radius AB, intersecting line AB at E.
+<Circle Tool>Construct the circle with centre E and radius CD, intersecting circle B at F.
+<Line Tool>Construct the line AF.","['Line Tool', 'Circle Tool', 'Circle Tool', 'Line Tool']","[['A', 'B'], ['AB', 'C', 'D'], ['E'], ['CD', 'F'], ['AF']]","['A', 'B']"
+104,Kappa,https://euclidea.fandom.com/wiki/Three_Circles_-_2,"Description: Construct three circles tangent to each other at the given points.Given the points A, B, and C.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct three circles tangent to each other at the given points.Given the points A, B, and C.
+Solution: ","Construct the perpendicular bisector of AB.
+Construct the perpendicular bisector of AC, intersecting the previous bisector at D.
+Construct the line AD.
+Construct the perpendicular to AD through A, intersecting the bisector of AB at E and the bisector of AC at F.
+Construct the circle with centre E and radius AE.
+Construct the circle with centre F and radius AF.
+Construct the line BE.
+Construct the line CF, intersecting BE at G.
+Construct the circle with centre G and radius BG.
+Rationale: None","<Perpendicular Tool>Construct the perpendicular bisector of AB.
+<Perpendicular Tool>Construct the perpendicular bisector of AC, intersecting the previous bisector at D.
+<Line Tool>Construct the line AD.
+<Perpendicular Tool>Construct the perpendicular to AD through A, intersecting the bisector of AB at E and the bisector of AC at F.
+<Circle Tool>Construct the circle with centre E and radius AE.
+<Circle Tool>Construct the circle with centre F and radius AF.
+<Line Tool>Construct the line BE.
+<Line Tool>Construct the line CF, intersecting BE at G.
+<Circle Tool>Construct the circle with centre G and radius BG.","['Perpendicular Tool', 'Perpendicular Tool', 'Line Tool', 'Perpendicular Tool', 'Circle Tool', 'Circle Tool', 'Line Tool', 'Line Tool', 'Circle Tool']","[['A', 'B', 'C'], ['AB'], ['AC', 'D'], ['AD'], ['E', 'F'], ['AE'], ['AF'], ['BE'], ['G', 'CF'], ['BG']]","['A', 'B', 'C']"
+105,Kappa,https://euclidea.fandom.com/wiki/Center_of_Rotation,"Description: Construct the center of rotation that transforms one of the given equal segments to the other one.Given one line AB and the other CD.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct the center of rotation that transforms one of the given equal segments to the other one.Given one line AB and the other CD.
+Solution: ","Construct the perpendicular bisector of AC.
+Construct the perpendicular bisector of BD, intersecting the other bisector at E.
+Point at E
+Rationale: None","<Perpendicular Tool>Construct the perpendicular bisector of AC.
+<Perpendicular Tool>Construct the perpendicular bisector of BD, intersecting the other bisector at E.
+<Point Tool>Point at E","['Perpendicular Tool', 'Perpendicular Tool', 'Point Tool']","[['AB', 'CD'], ['AC'], ['E', 'BD'], []]","['AB', 'CD']"
+106,Lambda,https://euclidea.fandom.com/wiki/Fourth_Proportional,"Description: Construct a point D on the ray OC such that the segment OD is the fourth proportional to the given segments.Given points O, A, B, and C.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a point D on the ray OC such that the segment OD is the fourth proportional to the given segments.Given points O, A, B, and C.
+Solution: ","Construct line AC.
+Construct a line parallel to AC passing through B, intersecting ray OC at point D.
+Mark point D.
+Rationale: The proportionality of line segments along lines originating from a single point passing through a pair of parallel lines is constant. 
+","<Line Tool>Construct line AC.
+<Line Tool>Construct a line parallel to AC passing through B, intersecting ray OC at point D.
+<Point Tool>Mark point D.","['Line Tool', 'Line Tool', 'Point Tool']","[['D', 'OC', 'OD', 'O', 'A', 'B', 'C'], ['AC'], [], []]","['D', 'OC', 'OD', 'O', 'A', 'B', 'C']"
+107,Lambda,https://euclidea.fandom.com/wiki/Geometric_Mean_of_Segments,"Description: Construct a point on the given ray to get a segment with length equal to the geometric mean of two adjacent segments.Given line segment AB and ray O, where ray O extends from point O and |AO| = a and |BO| = b.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a point on the given ray to get a segment with length equal to the geometric mean of two adjacent segments.Given line segment AB and ray O, where ray O extends from point O and |AO| = a and |BO| = b.
+Solution: ","Construct a circle with center O and radius |OA|, intersecting segment AB at C.
+Construct a circle with center C and radius |CO|, intersecting circle O at D and E.
+Construct line DE.
+Construct a circle with center B and radius |BO|, intersecting line DE at F.
+Construct a circle with center O and radius |OF|, intersecting ray O at G.
+Mark the point G.
+Rationale: Let's draw line OD for clarity (we don't need it in solution, only for explanation) intersecting circle O in points D and E.
+","<Circle Tool>Construct a circle with center O and radius |OA|, intersecting segment AB at C.
+<Circle Tool>Construct a circle with center C and radius |CO|, intersecting circle O at D and E.
+<Line Tool>Construct line DE.
+<Circle Tool>Construct a circle with center B and radius |BO|, intersecting line DE at F.
+<Circle Tool>Construct a circle with center O and radius |OF|, intersecting ray O at G.
+<Point Tool>Mark the point G.","['Circle Tool', 'Circle Tool', 'Line Tool', 'Circle Tool', 'Circle Tool', 'Point Tool']","[['AB', 'O', 'O', 'O', 'AO', 'BO'], ['C', 'OA'], ['CO', 'E', 'D'], ['DE'], ['B', 'F'], ['G', 'OF'], []]","['AB', 'O', 'O', 'O', 'AO', 'BO']"
+108,Lambda,https://euclidea.fandom.com/wiki/Golden_Section,"Description: Construct a point that divides the segment in the ""golden section"".Given line segment with points A and B.
+Tool List: ['Point Tool', 'Line Tool', 'Circle Tool', 'Perpendicular Bisector Tool', 'Perpendicular Tool', 'Angle Bisector Tool', 'Parallel Tool', 'Compass Tool', 'Intersect Tool']
+Solution: ","Description: Construct a point that divides the segment in the ""golden section"".Given line segment with points A and B.
+Solution: ","Construct a circle with center A and radius AB.
+Construct the perpendicular bisector of AB, marking intersection with AB as point C, and marking intersection with circle A as point D.
+Construct a circle with center C and radius AB, marking intersection with circle A at E. E should be on the opposite side of AB from D, or else the solution will not work.
+Construct line DE, intersecting with AB at point F.
+Mark the point F.
+Rationale: None","<Circle Tool>Construct a circle with center A and radius AB.
+<Perpendicular Tool>Construct the perpendicular bisector of AB, marking intersection with AB as point C, and marking intersection with circle A as point D.
+<Circle Tool>Construct a circle with center C and radius AB, marking intersection with circle A at E. E should be on the opposite side of AB from D, or else the solution will not work.
+<Line Tool>Construct line DE, intersecting with AB at point F.
+<Point Tool>Mark the point F.","['Circle Tool', 'Perpendicular Tool', 'Circle Tool', 'Line Tool', 'Point Tool']","[['A', 'B'], ['AB'], ['C', 'D'], ['E'], ['DE', 'F'], []]","['A', 'B']"

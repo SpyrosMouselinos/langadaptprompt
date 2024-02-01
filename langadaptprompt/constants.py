@@ -38,6 +38,24 @@ FILTERED_EUCLID = ["\nThe ends of a line are points, meaning that a line segment
                    "\nThe principle that things that coincide or perfectly overlap are equal."
                    "\nThe whole is greater than any of its parts."]
 
+COMMON_GEOMETRIC_TERMS_AND_THEOREMS = [
+    "The center of a circle or a quadrilateral is axiomatically located at the intersection point of perpendicular bisectors of any two chords or diagonals.",
+    "The diagonals of a rectangle are congruent and bisect each other.",
+    "Angles can be axiomatically constructed by bisecting larger angles or using the relationship between inscribed and central angles in a circle.",
+    "The golden section, is a geometric proportion that divides a line segment into two parts in such a way that the ratio of the whole segment to the longer part is equal to the ratio of the longer part to the shorter part.",
+    "Thales theorem: In a circle, if a line is drawn from one endpoint of a diameter to any point on the circle, then the angle formed at the point on the circle is always a right angle",
+    "Specific lengths, including irrational numbers the geometric mean, and the golden section, can be axiomatically created using intersecting circles, perpendicular lines, the Pythagorean Theorem, properties of similar triangles, and circle-based segment division methods.",
+    "An excircle is a circle that is outside a polygon and touches one of its sides and the extensions of the other two sides.",
+    "To achieve equal area division of an circle, a concentric circle with a perpendicular bisector of the diameter as the new radius. For quadrilateral, the intersection of their diagonals is the center, and any line passing through this center bisects the rectangle equally.",
+    "The Torricelli point is inside or on the triangle where the sum of the distances from this point to the three vertices of the triangle is minimized and can be found by constructing equilateral triangles on each side and intersecting the lines from their vertices to the opposite vertices of the original triangle.",
+    "Heron's Formula is used to find the area of a triangle when you know the lengths of all three sides. Area = squrt((s(s - a)(s - b)(s - c))).",
+    "Viviani's Theorem: The sum of distances from any point inside an equilateral triangle to its sides is constant.",
+    "Morley's Theorem: Trisecting the angles of a triangle and connecting the trisection points forms an equilateral triangle.",
+    "Barycentric Coordinates allow expressing any point within a triangle using weighted ratios.",
+    "The Butterfly Theorem relates to the intersection of two lines with intersecting chords in a circle, showing proportional segments.",
+    "Inscribed Angle Theorem: The measure of an inscribed angle in a circle is half the measure of the central angle that subtends the same arc. This theorem is often used when working with triangles inscribed in circles, as it relates angles formed by the intersection of chords and arcs."
+]
+
 FILTERED_TOOLS = [
     "\nLine Tool: Creates a line between two given points."
     "\nCircle Tool: Creates a circle with center, a given point and radius equal to the distance between the first given point and the second given point."
@@ -46,45 +64,50 @@ FILTERED_TOOLS = [
     "\nAngle Bisector Tool: Returns a line that splits a given angle in two equal angles. The line has as a start the point of the given angle.",
 ]
 
+
+def get_ctt():
+    return '\n'.join(COMMON_GEOMETRIC_TERMS_AND_THEOREMS)
+
+
 NL_SOLVER_INCEPTION_PROMPT = [
-    "You are an expert mathematician that focuses on Euclidean Geometry.",
+    "You are an expert mathematician who focuses on euclidean geometry.",
     "We share a common interest in collaborating to successfully solve a problem step by step.",
     "Your main responsibilities include being an reasoner, a planner and a solution designer.",
-    f"\nYou base your answers on the following principles: {''.join(FILTERED_EUCLID)}"
-    "\n\nYou must help me to write a series of steps that appropriately solve the requested task based on your expertise."
+    f"\nYou base your answers on the following principles: {get_ctt()}"
+    "\n\nYou must help me to write a series of steps that appropriately solve the requested task based on your expertise. Think step by step. Return your solutions in bullet points."
 ]
 
 NL_VALIDATOR_INCEPTION_PROMPT = [
-    "You are an expert mathematician that focuses on Euclidean Geometry.",
-    "We share a common interest in collaborating to successfully solve a problem step by step.",
+    "You are an expert mathematician who focuses on euclidean geometry.",
+    "We share a common interest in collaborating to successfully correct the solutions to a geometric problem step by step.",
     "Your main responsibilities include being an strict reviewer, and an efficient solution designer.",
-    f"\nYou base your answers on the following principles: {''.join(FILTERED_EUCLID)}"
-    "To complete the task, I will give you one or more solution steps, and you must help me identify any mistakes and then correct them."
+    "You are provided with a task decription and a series of solution steps.",
+    f"\nYou base your answers on the following principles: {get_ctt()}"
+    "\n\nTo complete the task, you must help me identify any mistakes and then correct them. Validate step by step. Mark as incorrect any step you belive that needs correction."
 ]
 
 GT_SOLVER_INCEPTION_PROMPT = [
-    "You are an helpful assistant that focuses on geometry and has access to specific tools.",
+    "You are an helpful assistant who focuses on geometry and has access to specific geometric tools.",
     "We share a common interest in collaborating to successfully solve a problem step by step.",
-    "You are also provided with a series of steps by an expert that will give you an initial idea how to solve the problem.",
     "Your main responsibilities include being an reasoner, a planner and a solution designer.",
+    "You are also provided with a task decription and a series of solution steps that will give you an initial idea how to solve the problem.",
     f"\n\nHere is a summary of the tools available to you: {''.join(FILTERED_TOOLS)}"
     "\n\nFor your suggestions you can only use the tools provided in the task tool list. "
     "Do not use any other tools. Do not imagine tools that do not exist. "
     "Do not use arbitrary lengths or points in your solutions.",
-    "\nYou must help me to write a series of steps that appropriately solve the requested task based on your expertise, the expert steps and tools in the list."
+    "\n\nYou must help me to write a series of steps that appropriately solve the requested task based on your expertise, the expert steps and tools in the list."
 ]
 
 GT_VALIDATOR_INCEPTION_PROMPT = [
-    "You are an expert mathematician that focuses on geometry and has access to geometric tools.",
-    "We share a common interest in collaborating to successfully solve a problem step by step.",
+    "You are an expert mathematician who focuses on euclidean geometry and has access to specific geometric tools.",
+    "We share a common interest in collaborating to successfully correct the solutions to a geometric problem step by step.",
     "Your main responsibilities include being an strict reviewer, and an efficient solution designer.",
-    "You are provided with a problem and a series of solution steps using geometric tools.",
-    "You need to validate that the steps provide a good solution to the problem.",
+    "You are provided with a task decription and a series of solution steps using geometric tools.",
     f"\n\nHere is a summary of the tools available to you: {''.join(FILTERED_TOOLS)}"
     "\n\nFor your suggestions you can only use the tools provided in the task tool list. "
     "Do not use any other tools. Do not imagine tools that do not exist. "
     "Do not use arbitrary lengths or points in your solutions.",
-    "\nYou must help me identify any mistakes in the steps and then correct them."
+    "\n\nTo complete the task, you must help me identify any mistakes and then correct them. Validate step by step. Mark as incorrect any step you belive that needs correction."
 ]
 
 

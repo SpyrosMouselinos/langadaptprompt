@@ -4,8 +4,10 @@ import torch
 import gc
 import time
 import pandas as pd
-import json
-from transformers import AutoModelForCausalLM, AutoTokenizer, GPT2Tokenizer, GPT2Model, GPT2LMHeadModel
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from .promptbuilder import few_shot_builder
+from .constants import get_nl_s_prompt, get_nl_v_prompt, get_gt_s_prompt, get_gt_v_prompt
+from tqdm import tqdm
 
 
 def extract_descriptions_and_solutions(text):
@@ -53,14 +55,13 @@ def stop_at_specific_tokens(decoded_tokens, stop_tokens):
     return decoded_tokens[:cutoff]
 
 
-OPENAI_KEY = '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'
-
-
 class Agent:
-    def __init__(self, id, llm, inception_prompt):
+    def __init__(self, id, llm, inception_prompt, temp=0.6, openai_key=None):
         self.id = id
         self.llm = llm
         self.inception_prompt = inception_prompt
+        self.temp = temp
+        self.openai_key = openai_key
 
     def run_engine(self, message):
         if self.llm == 'fake' and self.id == 1:
@@ -139,12 +140,12 @@ class Agent:
         while retries > 0:
             try:
                 solution = openai.ChatCompletion.create(
-                    api_key=OPENAI_KEY,
+                    api_key=self.openai_key,
                     model=self.llm,
-                    max_tokens=500,
+                    max_tokens=300,
                     stop=['\n\n\n'],
                     messages=split_messages,
-                    temperature=0.6,
+                    temperature=self.temp,
                     top_p=0.95,
                     n=1
                 )
@@ -160,16 +161,16 @@ class Agent:
         llm, tokenizer = self.llm
         augmented_messages = self.inception_prompt + '\n\n' + '\n'.join(messages)
         inputs = tokenizer(augmented_messages, return_tensors="pt")
-        inputs = inputs.to(device='cuda')
+        # inputs = inputs.to(device='cuda')
         stop_tokens = ["\n\n\n", "Example", "Problem", "Description"]
 
         with torch.no_grad():
             outputs = llm.generate(
                 **inputs,
-                max_new_tokens=500,
+                max_new_tokens=300,
                 do_sample=True,
                 top_p=0.95,
-                temperature=0.6,
+                temperature=self.temp,
                 num_return_sequences=1
             )
         ret = tokenizer.batch_decode(outputs, skip_special_tokens=True)
@@ -187,7 +188,7 @@ class Agent:
                 response = self.llm.generate_content(
                     augmented_messages,
                     generation_config={
-                        'temperature': 0.6,
+                        'temperature': self.temp,
                         'top_p': 0.95,
                     },
                 )
@@ -211,9 +212,24 @@ class Simulacra:
             if list(self.agents.values()).count(agent) > 1:
                 raise ValueError("All agents must have different ids")
 
-        self.gather_agent = Agent(id=5, llm=self.agents[2].llm, inception_prompt="You are a helpful assistant.")
+        self.gather_agent = Agent(id=5, llm=self.agents[2].llm,
+                                  inception_prompt="You are an expert in reading and analyzing text."
+                                                   "You are provided with a dialogue where solution steps of"
+                                                   " a problem are suggested and then corrected. "
+                                                   "Corrections refer to only specific steps. "
+                                                   "Your goal is to read the dialogue below, "
+                                                   "apply the corrections to the initial set "
+                                                   "of steps and and return all the steps "
+                                                   "corrected. List the final, correct steps in a clear,"
+                                                   " bullet-point format"
+                                  )
         self.shift_agent = Agent(id=6, llm=self.agents[2].llm,
-                                 inception_prompt="You are a helpful assistant, who is an expert in euclidean Geometry.")
+                                 inception_prompt="You are an expert in euclidean geometry, logic and mathematics. "
+                                                  "You are provided with a problem description and "
+                                                  "two solutions for it. "
+                                                  "Your goal is to assess which solution is better. "
+                                                  "If both solutions seem equally good then prefer the first solution. "
+                                 )
         self.cache_original_nl_problem = None
         self.cache_original_fs_nl = None
         self.cache_original_nl_solution = None
@@ -297,7 +313,6 @@ class Simulacra:
         if self.cache_original_nl_problem is None:
             raise ValueError("You must first run the NL agents!")
         shift_command = (
-            "You are an expert in euclidean geometry, logic and mathematics. You are provided with a problem description and two solutions for it. Your goal is to assess which solution is better. If both solutions seem equally good then prefer the first solution. "
             "Reply with \"1\" if you prefer the first solution or \"2\" if you prefer the second."
             "Do not reply with anything else."
         )
@@ -322,14 +337,14 @@ class Simulacra:
         gather_agent = self.gather_agent
         if mode == 'nl':
             extraction_command = (
-                "You are an expert in reading and analyzing text. You are provided with a dialogue where solution steps of a problem are suggested and then corrected. Corrections refer to only specific steps. Your goal is to read the dialogue below, apply the corrections to the initial set of steps and and return all the steps corrected."
-                "List the final, correct steps in a clear, bullet-point format. Each step should start with 'STEP' followed by the step number and its description. Do not return more steps than those provided."
+                "Each step should start with 'STEP' followed by the step number and its description. "
+                "Do not return more steps than those provided."
                 "For example:\n'STEP 1. Draw a Line...\nSTEP 2. Using center X and radius...' and so on."
             )
         elif mode == 'gt':
             extraction_command = (
-                "You are an expert in reading and analyzing text. You are provided a dialogue where solution steps of a problem are suggested and then corrected. Corrections refer to only specific steps. Your goal is to read the dialogue below, apply the corrections to the initial set of steps and and return all the steps corrected."
-                "List the final, correct steps in a clear, bullet-point format. Each step should start with the step number followed by the tool used and its description. Do not return more steps than those provided."
+                "Each step should start with the step number followed by the tool used and its description."
+                " Do not return more steps than those provided."
                 "For example:\n'1. Line Tool Draw a line...\n2. Circle Tool Using center X and radius...' and so on."
             )
         else:
@@ -338,30 +353,53 @@ class Simulacra:
         return final_steps
 
 
-if __name__ == '__main__':
-    from constants import get_nl_s_prompt, get_nl_v_prompt
+def run_simulacra(llm, key=None,
+                  adapt_self=False,
+                  top_k=1,
+                  solver_temp=0.2,
+                  validator_temp=0.8,
+                  data=None,
+                  debug=False):
+    print(
+        "NOTICE: Argument LLM must be one of [chatgpt3.5, gpt4] for OPENAI models. You must also provide the Key argument."
+        "\nAlternatively, it must be the name of a huggingface model currently with context size > 2048."
+        "\nOr must be the Gemini Model Instance.")
 
-    a1 = Agent(id=1, llm='gpt-3.5-turbo-1106',
-               inception_prompt=get_nl_s_prompt())
-    a2 = Agent(id=2, llm='gpt-3.5-turbo-1106',
-               inception_prompt=get_nl_v_prompt())
+    if isinstance(llm, str):
+        if llm == 'chatgpt3.5':
+            llm_ = 'gpt-3.5-turbo-1106'
+            assert key is not None
+            print("Assuming ChatGPT agents...\n")
+        elif llm == 'gpt4':
+            llm_ = 'gpt-4-0125-preview'
+            assert key is not None
+            print("Assuming GPT4 agents...\n")
+        else:
+            model = AutoModelForCausalLM.from_pretrained(llm)
+            tokenizer = AutoTokenizer.from_pretrained(llm)
+            llm_ = [model, tokenizer]  # Huggingface
+            print(f"Assuming {llm.split('/')[0]} agents...\n")
+    else:
+        llm_ = llm  # Gemini
+        print(f"Assuming Gemini agents...\n")
 
-    a3 = Agent(id=3, llm='gpt-3.5-turbo-1106',
-               inception_prompt='You are an expert in euclidean Geometry and in using the following geometric tools: Line Tool, Circle Tool, Angle Bisector Tool. You will be provided a problem, alongside a proposed solution expressed in natural language. Your goal is to solve the problem by using exclusively the provided tools. Think step by step. Given the following problem give your solutions in bullet points. Each bullet point should start with the tool you choose to use and the number of the current step, for example Line Tool 1. Do something\nAngle Bisector Tool 2. Do something else')
-    a4 = Agent(id=4, llm='gpt-3.5-turbo-1106',
-               inception_prompt='You are an expert in euclidean Geometry and in using the following geometric tools: Line Tool, Circle Tool, Angle Bisector Tool.\n'
-                                'Your goal is to validate a series of steps to a given problem.\n'
-                                'Validate each step, and mark it as incorrect by adding \"incorrect\" after their instructions, for example if step number N, using the Circle Tool was incorrect you should return \"N Circle Tool. [...] incorrect\".\nIf all steps were correct return just \"All correct\". Do not reply anything else.')
+    a1 = Agent(id=1, llm=llm_,
+               inception_prompt=get_nl_s_prompt(), temp=solver_temp, openai_key=key)
+    a2 = Agent(id=2, llm=llm_,
+               inception_prompt=get_nl_v_prompt(), temp=validator_temp, openai_key=key)
+    a3 = Agent(id=3, llm=llm_,
+               inception_prompt=get_gt_s_prompt(), temp=solver_temp, openai_key=key)
+    a4 = Agent(id=4, llm=llm_,
+               inception_prompt=get_gt_v_prompt(), temp=validator_temp, openai_key=key)
 
-    from promptbuilder import few_shot_builder
-
-    data = pd.read_csv('new_euclidea.csv')
-    data = data[(data['pack'] == 'Alpha') | (data['pack'] == 'Beta')]
+    if data is None:
+        data = pd.read_csv('new_euclidea.csv')
+        data = data[(data['pack'] == 'Alpha') | (data['pack'] == 'Beta')]
     data = data.dropna()
     flat_data = [row.to_dict() for _, row in data.iterrows()]
 
     results = {'results': []}
-    for problem in flat_data:
+    for problem in tqdm(flat_data):
         pack = problem['pack']
         question_nl = problem['question_r'].strip()
         question_gt = problem['question'].strip()
@@ -369,7 +407,7 @@ if __name__ == '__main__':
                                               dataset_df=data,
                                               pack_limit=pack,
                                               mode='Adapt',
-                                              self_reflect=False,
+                                              self_reflect=adapt_self,
                                               question_kw='question_r',
                                               solution_kw='solution_r',
                                               solution_tool_kw='solution_tool',
@@ -378,25 +416,48 @@ if __name__ == '__main__':
                                               dataset_df=data,
                                               pack_limit=pack,
                                               mode='Adapt',
-                                              self_reflect=False,
+                                              self_reflect=adapt_self,
                                               )
+        instance_results = []
+        for k in range(top_k):
+            if debug:
+                try:
+                    framework = Simulacra(agents=[a1, a2, a3, a4])
+                    few_shot_examples = few_shot_prompt_nl[:few_shot_prompt_nl.rfind('Description:')].strip()
+                    nl_solution = framework.nl_solve(
+                        messages=f"Here are some solved examples:\n\n{few_shot_examples}"
+                                 f"\n\nSolve the following problem:\n\n{question_nl}\n")
+                    domain_shift = framework.domain_shift(nl_solution)
+                    few_shot_examples = few_shot_prompt_gt[:few_shot_prompt_gt.rfind('Description:')].strip()
+                    question_gt = question_gt[:question_gt.rfind('Solution:')].strip()
+                    gt_solution = framework.gt_solve(
+                        messages=f"Here are some solved examples:\n\n{few_shot_examples}"
+                                 f"\n\nSolve the following problem using the available tools.\n\n{question_gt}\n"
+                                 f"Here is a proposed solution strategy:\n{domain_shift}\n\nSolution:")
+                    instance_results.append([domain_shift, gt_solution])
+                except Exception as e:
+                    print(f"Exception occurred: {e}\nRetrying...\n")
+                    instance_results.append(['', ''])
+                    pass
+            else:
+                framework = Simulacra(agents=[a1, a2, a3, a4])
+                few_shot_examples = few_shot_prompt_nl[:few_shot_prompt_nl.rfind('Description:')].strip()
+                nl_solution = framework.nl_solve(
+                    messages=f"Here are some solved examples:\n\n{few_shot_examples}"
+                             f"\n\nSolve the following problem:\n\n{question_nl}\n")
+                domain_shift = framework.domain_shift(nl_solution)
+                few_shot_examples = few_shot_prompt_gt[:few_shot_prompt_gt.rfind('Description:')].strip()
+                question_gt = question_gt[:question_gt.rfind('Solution:')].strip()
+                gt_solution = framework.gt_solve(
+                    messages=f"Here are some solved examples:\n\n{few_shot_examples}"
+                             f"\n\nSolve the following problem using the available tools.\n\n{question_gt}\n"
+                             f"Here is a proposed solution strategy:\n{domain_shift}\n\nSolution:")
+                instance_results.append([domain_shift, gt_solution])
 
-        ######
-        framework = Simulacra(agents=[a1, a2, a3, a4])
-        few_shot_examples = few_shot_prompt_nl[:few_shot_prompt_nl.rfind('Description:')].strip()
-        nl_solution = framework.nl_solve(
-            messages=f"Here are some solved examples:\n\n{few_shot_examples}"
-                     f"\n\nSolve the following problem:\n\n{question_nl}\n")
-        domain_shift = framework.domain_shift(nl_solution)
-        # few_shot_examples = few_shot_prompt_gt[:few_shot_prompt_gt.rfind('Description:')].strip()
-        # question_gt = question_gt[:question_gt.rfind('Solution:')].strip()
-        # gt_solution = framework.gt_solve(
-        #     messages=f"Here are some solved examples:\n\n{few_shot_examples}"
-        #              f"\n\nSolve the following problem using the available tools.\n\n{question_gt}\n"
-        #              f"Here is a proposed solution strategy:\n{domain_shift}\n\nSolution:")
+        results['results'].append(instance_results)
+    return results
 
-        ######
-        response = domain_shift
-        print(domain_shift)
-        results['results'].append(response)
-        time.sleep(1)
+
+if __name__ == '__main__':
+    print(run_simulacra('chatgpt3.5', key='')) #'Yukang/Llama-2-7b-longlora-32k-ft'
+

@@ -7,9 +7,6 @@ import json
 from typing import List, Optional
 from pydantic.v1 import BaseModel, Field, Json, root_validator
 
-os.environ["OPENAI_API_KEY"] = "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"
-
-
 class AccumulativeCrew(Crew):
     def __init__(self, **data):
         super().__init__(**data)
